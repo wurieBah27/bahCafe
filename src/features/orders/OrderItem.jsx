@@ -14,7 +14,7 @@ const OrderItem = ({ data = {}, status }) => {
   return (
     <div>
       <div
-        className="relative rounded-md border bg-gray-50 px-4 pb-2 pt-4 text-gray-700 max-[380px]:px-1 sm:px-6 lg:px-8"
+        className="relative rounded-md border bg-gray-50 px-4 pb-2 pt-4 text-gray-700 max-[380px]:px-1 sm:px-6 lg:px-8 dark:bg-gray-700"
         aria-modal="true"
         role="dialog"
         tabIndex="-1"
@@ -29,19 +29,23 @@ const OrderItem = ({ data = {}, status }) => {
               />
 
               <div>
-                <div className="flex items-center gap-3 text-gray-400">
+                <div className="flex items-center gap-3 text-gray-400 dark:text-gray-100">
                   <span>Title:</span>
-                  <h3 className="text-sm text-gray-900">{name}</h3>
+                  <h3 className="text-sm text-gray-900 dark:text-white">
+                    {name}
+                  </h3>
                 </div>
-                <div className="flex items-center gap-3 text-gray-400">
+                <div className="flex items-center gap-3 text-gray-400 dark:text-gray-100">
                   <span>Price:</span>
                   <span className="flex items-baseline gap-1 text-sm">
-                    <span className="text-[0.5rem] text-gray-900">AED</span>{" "}
+                    <span className="text-[0.5rem] text-gray-900 dark:text-gray-100">
+                      AED
+                    </span>{" "}
                     <b className="text-[#38ae04]">{unitPrice}</b>
                   </span>
                 </div>
 
-                <div className="mt-0.5 flex flex-wrap text-[10px] text-gray-600">
+                <div className="mt-0.5 flex flex-wrap text-[10px] text-gray-600 dark:text-gray-100">
                   {options &&
                     Object.keys(options).map((key) => (
                       <div key={key} className="mr-1">
@@ -54,10 +58,12 @@ const OrderItem = ({ data = {}, status }) => {
                       </div>
                     ))}
                 </div>
-                <div className="flex items-center gap-3 text-gray-400">
+                <div className="flex items-center gap-3 text-gray-400 dark:text-gray-100">
                   <span>Sub total:</span>
                   <span className="flex items-baseline gap-1 text-sm">
-                    <span className="text-[0.5rem] text-gray-900">AED</span>{" "}
+                    <span className="text-[0.5rem] text-gray-900 dark:text-gray-100">
+                      AED
+                    </span>{" "}
                     <b className="text-[#38ae04]">{totalPrice}</b>
                   </span>
                 </div>
@@ -65,7 +71,7 @@ const OrderItem = ({ data = {}, status }) => {
             </li>
           </ul>
         </div>
-        <div className="flex items-center gap-3 py-2">
+        <div className="flex items-center gap-3 py-2 dark:text-gray-100">
           <Button.Group>
             <Button
               color="gray"
@@ -73,7 +79,7 @@ const OrderItem = ({ data = {}, status }) => {
               onClick={() => navigate(`/product/${id}`)}
             >
               <span className="flex items-center gap-1">
-                View <HiMiniEye className="text-blue-700" />
+                View <HiMiniEye className="text-blue-700 dark:text-gray-300" />
               </span>
             </Button>
             <Button
@@ -82,7 +88,8 @@ const OrderItem = ({ data = {}, status }) => {
               onClick={() => dispatch(addItemToCart(id, data))}
             >
               <span className="flex items-center gap-1">
-                Re Order <HiMiniArrowPath className="text-blue-700" />
+                Re Order{" "}
+                <HiMiniArrowPath className="text-blue-700 dark:text-gray-300" />
               </span>{" "}
             </Button>
             <Button

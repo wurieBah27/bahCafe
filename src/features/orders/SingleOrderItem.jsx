@@ -22,17 +22,19 @@ const SingleOrderItem = ({ order = {} }) => {
   const orderDate = format(new Date(createdAt), "Pp");
   const updateDate = format(new Date(updated_at), "Pp");
   return (
-    <div>
-      <div className="mb-10 flex flex-col gap-3 bg-gray-50 px-4 py-10 sm:px-6">
-        <div className="flex items-center gap-2 max-[400px]:text-xs">
-          <span className="font-bold text-gray-600">Order ID: </span>{" "}
+    <div className="dark:bg-gray-700">
+      <div className="mb-10 flex flex-col gap-3 rounded-xl px-4 py-10 sm:px-6">
+        <div className="flex items-center gap-2 max-[400px]:text-xs dark:text-gray-200">
+          <span className="font-bold text-gray-600 dark:text-gray-100">
+            Order ID:{" "}
+          </span>{" "}
           <span className="text-sm">{id}</span>
         </div>
-        <div className="flex items-center gap-2 max-[400px]:text-xs">
+        <div className="flex items-center gap-2 max-[400px]:text-xs dark:text-gray-100">
           <span className="font-bold">Order #: </span>{" "}
           <span>{order_number}</span>
         </div>
-        <div className="flex items-center gap-2 max-[400px]:text-xs">
+        <div className="flex items-center gap-2 max-[400px]:text-xs dark:text-gray-100">
           <span className="font-bold">
             {payment_status === "Pending" && "Payment status"}
             {payment_status === "On Credit" && "Payment Pending"}
@@ -43,25 +45,27 @@ const SingleOrderItem = ({ order = {} }) => {
           </span>{" "}
           <span>{payment_status}</span>
         </div>
-        <div className="flex items-center gap-2 max-[400px]:text-xs">
+        <div className="flex items-center gap-2 max-[400px]:text-xs dark:text-gray-100">
           <span className="flex items-center gap-1 font-bold">
-            Date <HiClock className="text-blue-700" /> :
+            Date <HiClock className="text-blue-700 dark:text-gray-300" /> :
           </span>
           <span className="text-sm">{orderDate}</span>
         </div>
-        <div className="flex items-center gap-2 max-[400px]:text-xs">
+        <div className="flex items-center gap-2 max-[400px]:text-xs dark:text-gray-100">
           <span className="flex items-center gap-1 font-bold">
-            Last update <HiClock className="text-blue-700" /> :
+            Last update <HiClock className="text-blue-700 dark:text-gray-300" />{" "}
+            :
           </span>
           <span className="text-sm">{updateDate}</span>
         </div>
-        <div className="flex items-center gap-2 max-[400px]:text-xs">
+        <div className="flex items-center gap-2 max-[400px]:text-xs dark:text-gray-100">
           <span className="flex items-center gap-1 font-bold">
-            Employee <HiUserCircle className="text-blue-700" /> :
+            Employee{" "}
+            <HiUserCircle className="text-blue-700 dark:text-gray-300" /> :
           </span>
           <span className="text-sm">{employeeName || ""}</span>
         </div>
-        <div className="flex items-center gap-2 max-[400px]:text-xs">
+        <div className="flex items-center gap-2 max-[400px]:text-xs dark:text-gray-100">
           <span className="flex items-center gap-1 font-bold">
             Order Status:
           </span>

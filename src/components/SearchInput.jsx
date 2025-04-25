@@ -5,9 +5,10 @@ import { IoFilter } from "react-icons/io5";
 const SearchInput = () => {
   return (
     <div className="mt-4 flex items-center gap-4 px-2 sm:px-6">
-      <div className="max-w-full flex-1">
+      <div className="max-w-full flex-1 text-xl font-semibold text-gray-900 dark:text-gray-100">
         <TextInput
           id="email4"
+          className="text-xl"
           type="email"
           rightIcon={HiAdjustments}
           placeholder="How mai help you...."

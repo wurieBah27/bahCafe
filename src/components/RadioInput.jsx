@@ -15,7 +15,7 @@ const RadioInput = ({ arrayObjs, name, isRequired, register, errors }) => {
           </span>
         )}
       </legend>
-      <div>
+      <div className="flex flex-col gap-2">
         {arrayObjs?.map((item) => (
           <label
             key={item?.id}

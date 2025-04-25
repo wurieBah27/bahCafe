@@ -4,7 +4,7 @@ import OrdersPage from "../features/orders/OrdersPage";
 const Orders = () => {
   return (
     <div>
-      <div className="mx-auto py-4 pb-32">
+      <div className="mx-auto px-4 py-4 pb-32">
         <BackButton />
         <div>
           <OrdersPage />

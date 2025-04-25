@@ -17,6 +17,7 @@ import SingleItemDetails from "./pages/SingleItemDetails";
 import ReviewPage from "./pages/ReviewPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import ProtectedRoutes from "./components/ProtectedRoutes";
+import ProductsPage from "./pages/ProductsPage";
 
 const router = createBrowserRouter([
   {
@@ -28,13 +29,16 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
+        path: "/products",
+        element: <ProductsPage />,
+      },
+      {
         path: "/user",
         element: (
           <ProtectedRoutes>
             <UserPage />
           </ProtectedRoutes>
         ),
-        // loader: menueLoader,
       },
       {
         path: "/user/details",
@@ -43,7 +47,6 @@ const router = createBrowserRouter([
             <UserPersonalDetails />
           </ProtectedRoutes>
         ),
-        // loader: menueLoader,
       },
       {
         path: "/user/address",

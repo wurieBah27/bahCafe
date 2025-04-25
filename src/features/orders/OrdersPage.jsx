@@ -25,8 +25,10 @@ const OrdersPage = () => {
 
   if (isLoading) return <Spinner />;
   return (
-    <div className="px-4 py-4 text-gray-800 sm:px-6">
-      <h1 className="py-4 text-center text-2xl">{orderStatus} Orders</h1>
+    <div className="py-4 text-gray-800 sm:px-6 dark:bg-gray-800">
+      <h1 className="py-4 text-center text-2xl dark:text-gray-200">
+        {orderStatus} Orders
+      </h1>
       <div className="flex items-center justify-between gap-4 py-4">
         <Button
           className="w-1/2"
