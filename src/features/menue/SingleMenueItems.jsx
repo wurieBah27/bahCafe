@@ -45,7 +45,7 @@ const SingleMenueItems = ({ data = {} }) => {
       <div>
         {item ? (
           <div
-            className={`${is_available ? "bg-primary dark:bg-gray-600" : "bg-gray-300 opacity-50"} relative flex -hidden w-full flex-col items-stretch justify-start rounded-lg py-3 shadow-[0_4px_6px_-1px_rgba(0,_0,_0,_0.1),_0_2px_4px_-2px_rgba(0,_0,_0,_0.05)] transition-all hover:translate-y-[4px] active:translate-y-[4px]`}
+            className={`${is_available ? "bg-primary bg-red-500 dark:bg-gray-600" : "bg-gray-300 opacity-50"} relative flex -hidden w-full flex-col items-stretch justify-start rounded-lg p-3 shadow-[0_4px_6px_-1px_rgba(0,_0,_0,_0.1),_0_2px_4px_-2px_rgba(0,_0,_0,_0.05)] transition-all hover:translate-y-[4px] active:translate-y-[4px]`}
           >
             <Link to={`/product/${id}`}>
               <div className="contentss item relative flex items-center gap-3">
@@ -86,7 +86,7 @@ const SingleMenueItems = ({ data = {} }) => {
             </Link>
 
             <div className="price-calories mr-2 flex items-center justify-between max-[380px]:mt-2">
-              <div className="absolute -top-4 right-2">
+              <div className="absolute right-2 top-0">
                 <ItemRating
                   reviewCounts={totalReviews}
                   averageRating={averageRatings.toFixed(1)}
@@ -110,7 +110,7 @@ const SingleMenueItems = ({ data = {} }) => {
         ) : (
           <Link to={`/product/${id}`}>
             <div
-              className={`${is_available ? "bg-primary dark:bg-gray-700" : "bg-gray-300 opacity-50"} relative flex -hidden w-full flex-col items-stretch justify-start rounded-lg py-3 shadow-[0_4px_6px_-1px_rgba(0,_0,_0,_0.1),_0_2px_4px_-2px_rgba(0,_0,_0,_0.05)] transition-all hover:translate-y-[4px] active:translate-y-[4px]`}
+              className={`${is_available ? "bg-primary dark:bg-gray-700" : "bg-gray-300 opacity-50"} relative flex -hidden w-full flex-col items-stretch justify-start rounded-lg p-3 shadow-[0_4px_6px_-1px_rgba(0,_0,_0,_0.1),_0_2px_4px_-2px_rgba(0,_0,_0,_0.05)] transition-all hover:translate-y-[4px] active:translate-y-[4px]`}
             >
               <div className="contentss item relative flex items-center gap-3">
                 <img
@@ -148,7 +148,7 @@ const SingleMenueItems = ({ data = {} }) => {
                 </div>
               </div>
               <div className="price-calories mr-2 flex items-center justify-between max-[380px]:mt-2">
-                <div className="absolute -top-4 right-2">
+                <div className="absolute right-2 top-0">
                   <ItemRating
                     reviewCounts={totalReviews}
                     averageRating={averageRatings.toFixed(1)}

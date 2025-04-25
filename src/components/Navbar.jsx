@@ -16,8 +16,8 @@ const Navbar = () => {
   const formatted = address?.formatted || ""; // Use optional chaining to safely access formatted
 
   return (
-    <nav className="border-gray-200 bg-[#0d9488] shadow-xl dark:bg-gray-900">
-      <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between px-2 py-2 sm:px-5">
+    <nav className="border-gray-200 bg-[#0d9488] shadow-xl dark:bg-gray-700">
+      <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between px-4 py-2 sm:px-5">
         <div>
           <Link
             to="/"
