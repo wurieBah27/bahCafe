@@ -20,6 +20,7 @@ import SinglrCartItem from "../cart/SinglrCartItem";
 import confirmOperation from "../../helpers/confirm";
 import useCreateOrder from "./useCreateOrder";
 import { useState } from "react";
+import { fetchAddress } from "../customers/customerState/customerSlice";
 
 const Checkout = () => {
   const dispatch = useDispatch();
@@ -63,8 +64,7 @@ const Checkout = () => {
       confirText: "Order placed",
     });
 
-    console.log(result);
-
+    if (!result) return;
     return result;
   };
 
@@ -210,7 +210,10 @@ const Checkout = () => {
                           placeholder="Enter address"
                         />
                         {!formatted && (
-                          <span className="absolute right-1 top-[47%] cursor-pointer rounded-full bg-teal-500 px-3 py-2 text-sm text-gray-50">
+                          <span
+                            className="absolute right-1 top-[47%] cursor-pointer rounded-full bg-teal-500 px-3 py-2 text-sm text-gray-50"
+                            onClick={() => dispatch(fetchAddress())}
+                          >
                             Get Address
                           </span>
                         )}

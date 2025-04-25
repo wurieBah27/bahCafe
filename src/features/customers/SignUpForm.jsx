@@ -17,9 +17,6 @@ import useCreateUser from "./customersHooks/useCreateUser";
 import { fetchAddress, getCustomer } from "./customerState/customerSlice";
 import { useDispatch, useSelector } from "react-redux";
 import LoginWithGoogleBtn from "../../components/LoginWithGoogleBtn";
-import useLoginWithGoogle, {
-  useSignInWithGoogle,
-} from "./customersHooks/useLoginWithGoogle";
 
 const SignUpForm = () => {
   const [showPassword, setShowPassword] = useState(false);
