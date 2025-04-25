@@ -16,17 +16,15 @@ const Cart = () => {
         <div className="flex justify-between">
           <div className="mx-auto my-0 flex min-w-0 flex-1 flex-col gap-4">
             <div className="w-full px-7 max-[500px]:px-3">
-              <div className="flex items-center justify-start">
+              <div className="mb-6 flex items-center justify-start">
                 <div className="hmbfbA flex items-center gap-3">
-                  <strong className="title text-gray-500">Cart</strong>
+                  <strong className="title text-gray-500 dark:text-gray-300">
+                    Cart
+                  </strong>
                   <p className="text-gray-400">({totalCartItems} Items)</p>
                 </div>
               </div>
-              <div className="sc-751876e1-0 BqodV mt-3">
-                <button type="button" className="cta">
-                  Hello
-                </button>
-              </div>
+
               <CartPage />
             </div>
             <div>
@@ -34,7 +32,7 @@ const Cart = () => {
                 {!isItemsInCart && (
                   <Link
                     to="/checkout"
-                    className="mx-auto inline-block w-full rounded-sm bg-gray-700 px-5 py-3 text-sm text-gray-100 transition hover:bg-gray-600 sm:w-1/2"
+                    className="mx-auto inline-block w-full rounded-sm bg-gray-700 px-5 py-3 text-sm text-gray-100 transition hover:bg-gray-600 sm:w-1/2 dark:text-gray-200"
                   >
                     Checkout
                   </Link>
@@ -42,7 +40,7 @@ const Cart = () => {
 
                 <Link
                   to="/"
-                  className="inline-block text-sm text-gray-500 underline underline-offset-4 transition hover:text-gray-600"
+                  className="inline-block text-sm text-gray-500 underline underline-offset-4 transition hover:text-gray-600 dark:text-gray-200"
                 >
                   Continue shopping
                 </Link>

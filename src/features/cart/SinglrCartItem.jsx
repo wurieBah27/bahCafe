@@ -17,15 +17,17 @@ const SinglrCartItem = ({ data = {} }) => {
   return (
     <div>
       <div
-        className="relative mb-4 rounded-md border bg-gray-50 px-4 pb-2 pt-4 text-gray-700 shadow-lg max-[380px]:px-1 sm:px-6 lg:px-8"
+        className="relative mb-4 rounded-md border bg-gray-50 px-4 pb-2 pt-4 text-gray-700 shadow-lg max-[380px]:px-1 sm:px-6 lg:px-8 dark:bg-gray-600 dark:text-gray-100"
         aria-modal="true"
         role="dialog"
         tabIndex="-1"
       >
-        <h2 className="text-lg font-semibold text-gray-900">Order details</h2>
+        <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+          Order details
+        </h2>
         <button
           data-qa="cart-remove_item"
-          className="sc-31fee6c0-17 emumkq absolute end-4 top-0 rounded-full bg-red-100 p-4 text-red-700 transition hover:scale-110 max-sm:bg-red-50"
+          className="sc-31fee6c0-17 emumkq absolute end-4 top-0 rounded-full bg-red-100 p-4 text-red-700 transition hover:scale-110 max-sm:bg-red-50 dark:bg-red-400 dark:text-white"
           onClick={haandleDeleteItem}
         >
           <HiOutlineTrash className="yWWjo" />
@@ -42,15 +44,21 @@ const SinglrCartItem = ({ data = {} }) => {
               />
 
               <div>
-                <div className="flex items-center gap-3 text-gray-400">
+                <div className="flex items-center gap-3 text-gray-400 dark:text-gray-100">
                   <span>Title:</span>
-                  <h3 className="text-sm text-gray-900">{name}</h3>
+                  <h3 className="text-sm text-gray-900 dark:text-gray-100">
+                    {name}
+                  </h3>
                 </div>
-                <div className="flex items-center gap-3 text-gray-400">
+                <div className="flex items-center gap-3 text-gray-400 dark:text-gray-100">
                   <span>Price:</span>
                   <span className="flex items-baseline gap-1 text-sm">
-                    <span className="text-[0.5rem] text-gray-900">AED</span>{" "}
-                    <b className="text-[#38ae04]">{unitPrice}</b>
+                    <span className="text-[0.5rem] text-gray-900 dark:text-gray-100">
+                      AED
+                    </span>{" "}
+                    <b className="text-[#38ae04] dark:text-[#9aee76]">
+                      {unitPrice}
+                    </b>
                   </span>
                 </div>
 
@@ -67,11 +75,15 @@ const SinglrCartItem = ({ data = {} }) => {
                       </div>
                     ))}
                 </div>
-                <div className="flex items-center gap-3 text-gray-400">
+                <div className="flex items-center gap-3 text-gray-400 dark:text-gray-100">
                   <span>Sub total:</span>
                   <span className="flex items-baseline gap-1 text-sm">
-                    <span className="text-[0.5rem] text-gray-900">AED</span>{" "}
-                    <b className="text-[#38ae04]">{totalPrice.toFixed(2)}</b>
+                    <span className="text-[0.5rem] text-gray-900 dark:text-gray-100">
+                      AED
+                    </span>{" "}
+                    <b className="text-[#38ae04] dark:text-[#9aee76]">
+                      {totalPrice.toFixed(2)}
+                    </b>
                   </span>
                 </div>
               </div>
@@ -80,7 +92,7 @@ const SinglrCartItem = ({ data = {} }) => {
         </div>
         <div className="py-2">
           <div className="flex flex-wrap items-center justify-end gap-4 max-[500px]:justify-evenly">
-            <button className="sc-31fee6c0-17 emumkq add-to-wishlist-btn bg-teal-400 text-gray-50">
+            <button className="sc-31fee6c0-17 emumkq add-to-wishlist-btn bg-teal-400 text-gray-50 dark:text-gray-100">
               <HiOutlineHeart className="yWWjo" />
               <span
                 data-qa="cart-move_to_wishlist"

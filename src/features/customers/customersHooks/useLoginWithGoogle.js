@@ -1,8 +1,11 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { loginInWithGoogle, signupWithGoogle } from "../../../apis/user";
+import { useNavigate } from "react-router-dom";
 
 const useLoginWithGoogle = () => {
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
+
   const { mutate: createUserWithGoogle, isPending: isCreatingWithGoogle } =
     useMutation({
       mutationFn: loginInWithGoogle,

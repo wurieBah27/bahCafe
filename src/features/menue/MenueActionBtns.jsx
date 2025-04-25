@@ -10,9 +10,9 @@ function CustomBtn({ icon: Icon, onClick }) {
     <button
       onClick={onClick}
       type="button"
-      className="inline-flex items-center rounded-full border border-teal-700 p-2 text-center text-sm font-medium text-teal-700 hover:bg-teal-700 hover:text-white focus:outline-none focus:ring-4 focus:ring-teal-300 dark:border-teal-500 dark:text-teal-500 dark:hover:bg-teal-500 dark:hover:text-white dark:focus:ring-teal-800"
+      className="inline-flex items-center rounded-full border border-teal-700 p-2 text-center text-sm font-medium text-teal-700 hover:bg-teal-700 hover:text-white focus:outline-none focus:ring-4 focus:ring-teal-300 dark:border-gray-50 dark:text-teal-500 dark:hover:bg-teal-500 dark:hover:text-white dark:focus:ring-teal-800"
     >
-      <Icon className="h-4 w-4" />
+      <Icon className="h-4 w-4 dark:text-gray-100" />
       <span className="sr-only">Icon description</span>
     </button>
   );
@@ -22,7 +22,6 @@ const MenueActionBtns = ({ id, itemCurrentQuantity }) => {
   const itemQuantity = itemCurrentQuantity > 0;
   const items = JSON.parse(localStorage.getItem("cart")) || [];
 
-  console.log(items);
   const dispatch = useDispatch();
   const handleInc = () => {
     dispatch(incrementItemQuantity(id));

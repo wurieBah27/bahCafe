@@ -109,22 +109,24 @@ const ItemDetails = () => {
             <form
               action="#"
               onSubmit={handleSubmit(onSubmit)}
-              className="bg-primary bg-primary relative flex h-full min-h-[95vh] w-full flex-col gap-y-4 rounded-t-3xl pb-44 pt-6"
+              className="bg-primary relative flex h-full min-h-[95vh] w-full flex-col gap-y-4 rounded-t-3xl px-4 pb-44 pt-6 dark:bg-gray-800"
             >
-              <div className="flex w-full flex-col gap-y-8 sm:px-4">
+              <div className="flex w-full flex-col gap-y-8 sm:px-4 dark:text-gray-100">
                 <div className="absolute -top-4 right-2">
                   <ItemRating reviewCounts={totalReviews} />
                 </div>
                 <div className="flex flex-col gap-y-2">
                   <div className="flex items-start justify-between gap-x-1">
-                    <span className="text-primary flex flex-wrap gap-x-1 text-2xl font-bold">
+                    <span className="text-primary flex flex-wrap gap-x-1 text-2xl font-bold dark:text-gray-100">
                       {name}
                     </span>
                     <button type="button">
                       <HiOutlineHeart className="h-8 w-8" />
                     </button>
                   </div>
-                  <div className="text-primary">{descriptions}</div>
+                  <div className="text-primary dark:text-gray-300">
+                    {descriptions}
+                  </div>
                   <div className="flex items-baseline">
                     <span className="text-highlight_color flex items-baseline gap-2 text-base font-bold">
                       AED{" "}
@@ -145,12 +147,12 @@ const ItemDetails = () => {
                   </div>
                   <Link
                     to={`/review/${itemID}`}
-                    className="bg-highlight_color-800 animate-fadeInDown my-4 flex w-full items-center justify-between gap-x-3 rounded-md bg-[#bfb083] p-4 text-white shadow transition-all active:scale-[.99]"
+                    className="animate-fadeInDown my-4 flex w-full items-center justify-between gap-x-3 rounded-md bg-[#bfb083] p-4 text-white shadow transition-all active:scale-[.99] dark:bg-gray-600"
                   >
                     {totalReviews > 0 && (
                       <Rating>
                         <Rating.Star />
-                        <p className="ml-2 text-sm font-bold text-gray-900 dark:text-white">
+                        <p className="ml-2 text-sm font-bold text-gray-900 dark:text-gray-200">
                           {averageRatings?.toFixed(1)}
                         </p>
                         <span className="mx-1.5 h-1 w-1 rounded-full bg-gray-500 dark:bg-gray-400" />
@@ -160,7 +162,7 @@ const ItemDetails = () => {
                       </Rating>
                     )}
                     {totalReviews === 0 && (
-                      <span className="line-clamp-1 text-start text-sm font-bold">
+                      <span className="line-clamp-1 text-start text-sm font-bold dark:text-gray-200">
                         Doesn’t have any review yet.
                       </span>
                     )}
@@ -188,18 +190,18 @@ const ItemDetails = () => {
                         id="6697879eea96cf234a2a6e4a"
                         className="flex flex-col gap-y-4"
                       >
-                        <div className="flex flex-col gap-y-2">
+                        <div className="flex flex-col gap-y-2 dark:text-gray-100">
                           <div className="flex w-full items-center justify-between">
                             <div className="flex w-full items-center space-x-1.5">
-                              <p className="text-primary text-lg font-semibold">
-                                notes
+                              <p className="text-primary text-lg font-semibold dark:text-gray-100">
+                                Notes
                               </p>
                             </div>
                           </div>
                           {notes?.map((note, index) => (
                             <div
                               key={note.id}
-                              className="text-primary flex w-full flex-col gap-y-2 px-4"
+                              className="text-primary flex w-full flex-col gap-y-2 px-4 dark:text-gray-300"
                             >
                               {`${index + 1}. ${note.name}`}
                             </div>
@@ -210,15 +212,15 @@ const ItemDetails = () => {
                   </div>
                 </div>
               </div>
-              <div className="fixed bottom-0 left-1/2 z-[1100] mx-auto w-full max-w-5xl -translate-x-1/2 items-center justify-center bg-gray-50 px-5 py-4 text-sm">
+              <div className="fixed bottom-0 left-1/2 z-[1100] mx-auto w-full max-w-5xl -translate-x-1/2 items-center justify-center bg-gray-50 px-5 py-4 text-sm dark:bg-gray-600">
                 {is_available ? (
                   <div className="flex h-full flex-col gap-3 sm:gap-4">
                     <div className="flex items-center justify-between">
-                      <span className="flex items-center gap-1 text-xs text-gray-700">
+                      <span className="flex items-center gap-1 text-xs text-gray-700 dark:text-gray-200">
                         <HiOutlineChatBubbleLeft /> You have any Message?
                       </span>
                       <span
-                        className="cursor-pointer p-1 underline"
+                        className="cursor-pointer p-1 underline dark:text-gray-200"
                         onClick={() => setOpenModal((modal) => !modal)}
                       >
                         Add Message
@@ -246,7 +248,9 @@ const ItemDetails = () => {
                     </div>{" "}
                   </div>
                 ) : (
-                  <p className="text-gray-900">Out of stock</p>
+                  <p className="text-gray-900 dark:text-gray-100">
+                    Out of stock
+                  </p>
                 )}
               </div>
             </form>

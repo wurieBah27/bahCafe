@@ -19,7 +19,7 @@ const UserPersonalDetails = () => {
         <BackButton />
 
         <form action="" className="flex flex-col gap-4 text-gray-800">
-          <div className="flex items-center justify-between px-4 py-2 shadow-md">
+          <div className="flex items-center justify-between px-4 py-2 shadow-md dark:text-gray-100">
             <span>Profile Picture</span>
             {profileUrl && (
               <img
@@ -31,7 +31,7 @@ const UserPersonalDetails = () => {
             {!profileUrl && <Avatar />}
           </div>
           <div className="px-4 py-2 shadow-md">
-            <div className="mb-1 block">
+            <div className="mb-1 block dark:text-gray-100">
               <Label htmlFor="username" color="" value="Name" />
             </div>
             <TextInput
@@ -43,7 +43,7 @@ const UserPersonalDetails = () => {
             />
           </div>
           <div className="px-4 py-2 shadow-md">
-            <div className="mb-1 block">
+            <div className="mb-1 block dark:text-gray-100">
               <Label htmlFor="userEmail" color="" value="Email" />
             </div>
             <TextInput
@@ -55,7 +55,7 @@ const UserPersonalDetails = () => {
             />
           </div>
           <div className="px-4 py-2 shadow-md">
-            <div className="mb-1 block">
+            <div className="mb-1 block dark:text-gray-100">
               <Label htmlFor="userPhone" color="" value="Phone Number" />
             </div>
             <TextInput
@@ -67,7 +67,7 @@ const UserPersonalDetails = () => {
             />
           </div>
           <div className="px-4 py-2 shadow-md">
-            <div className="mb-1 block">
+            <div className="mb-1 block dark:text-gray-100">
               <Label htmlFor="userBirthday" color="" value="Birthday" />
             </div>
             <TextInput
@@ -78,7 +78,7 @@ const UserPersonalDetails = () => {
               defaultValue={dateOfBirth || ""}
             />
           </div>
-          <div>
+          <div className="dark:text-gray-100">
             {name && (
               <span className="text-xs sm:text-sm">
                 {name || ""} joined on the {formattedDate}

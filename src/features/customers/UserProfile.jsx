@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { getUser } from "./customersHooks/useGetCurrentUser";
 import { format } from "date-fns";
 import { LogOutUser } from "./customersHooks/LogInOutUser";
+import { MdFastfood } from "react-icons/md";
 
 const UserProfile = () => {
   const { data } = getUser();
@@ -23,7 +24,7 @@ const UserProfile = () => {
         <div className="flex min-h-screen flex-col pb-10">
           <Link to="/user/details">
             <div className="mb-8 w-full">
-              <div className="flex items-center justify-between bg-gray-100 px-4">
+              <div className="flex items-center justify-between bg-gray-100 px-4 dark:bg-gray-600">
                 <div className="flex items-center gap-4 py-2">
                   {profileUrl ? (
                     <img
@@ -38,56 +39,56 @@ const UserProfile = () => {
                     {name || "No name was provided"}
                   </h5>
                 </div>
-                <HiOutlineChevronRight className="size-8 font-bold" />
+                <HiOutlineChevronRight className="size-8 font-bold dark:text-gray-100" />
               </div>
             </div>
           </Link>
           <Link to={"/order"}>
-            <div className="mb-2 flex w-full items-center justify-between rounded-md bg-gray-100 px-4">
+            <div className="mb-2 flex w-full items-center justify-between rounded-md bg-gray-100 px-4 dark:bg-gray-600">
               <div className="flex items-center gap-4 py-2">
-                <CiViewList className="size-5 font-bold text-gray-500" />
+                <MdFastfood className="size-5 font-bold text-gray-500 dark:text-gray-100" />
 
                 <h5 className="text-xl font-medium text-gray-900 dark:text-white">
                   orders{" "}
                 </h5>
               </div>
-              <HiOutlineChevronRight className="size-8 font-bold" />
+              <HiOutlineChevronRight className="size-8 font-bold dark:text-gray-100" />
             </div>
           </Link>
 
-          <div className="mb-2 flex w-full items-center justify-between bg-gray-100 px-4">
+          <div className="mb-2 flex w-full items-center justify-between bg-gray-100 px-4 dark:bg-gray-600">
             <div className="flex items-center gap-4 py-2">
-              <FaHeart className="size-5 font-bold text-gray-500" />
+              <FaHeart className="size-5 font-bold text-gray-500 dark:text-gray-100" />
 
               <h5 className="text-xl font-medium text-gray-900 dark:text-white">
                 favorites
               </h5>
             </div>
-            <HiOutlineChevronRight className="size-8 font-bold" />
+            <HiOutlineChevronRight className="size-8 font-bold dark:text-gray-100" />
           </div>
           <Link to="/cart">
-            <div className="mb-2 flex w-full items-center justify-between bg-gray-100 px-4">
+            <div className="mb-2 flex w-full items-center justify-between bg-gray-100 px-4 dark:bg-gray-600">
               <div className="flex items-center gap-4 py-2">
-                <FaCartPlus className="size-5 font-bold text-gray-500" />
+                <FaCartPlus className="size-5 font-bold text-gray-500 dark:text-gray-100" />
 
                 <h5 className="text-xl font-medium text-gray-900 dark:text-white">
                   cart
                 </h5>
               </div>
-              <HiOutlineChevronRight className="size-8 font-bold" />
+              <HiOutlineChevronRight className="size-8 font-bold dark:text-gray-100" />
             </div>
           </Link>
 
           <Link to="/user/address">
-            <div className="mb-2 flex w-full items-center justify-between bg-gray-100 px-4">
+            <div className="mb-2 flex w-full items-center justify-between bg-gray-100 px-4 dark:bg-gray-600">
               <div className="flex items-center gap-4 py-2">
-                <HiMiniHome className="size-5 font-bold text-gray-500" />
+                <HiMiniHome className="size-5 font-bold text-gray-500 dark:text-gray-100" />
 
                 <h5 className="text-xl font-medium text-gray-900 dark:text-white">
                   Address
                 </h5>
               </div>
-              <HiOutlineChevronRight className="size-8 font-bold" />
+              <HiOutlineChevronRight className="size-8 font-bold dark:text-gray-100" />
             </div>
           </Link>
 
