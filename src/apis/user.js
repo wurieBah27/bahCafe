@@ -146,8 +146,7 @@ export const signupWithGoogle = async () => {
       // The signed-in user info.
       const user = result.user;
 
-      const addtionalUserInfo = result.additionalUserInfo;
-      const isNewUser = addtionalUserInfo?.isNewUser;
+      const isNewUser = result?._tokenResponse?.isNewUser;
 
       if (!isNewUser) {
         return user;
@@ -209,9 +208,10 @@ export const loginInWithGoogle = async () => {
       // The signed-in user info.
       const user = result.user;
 
-      const addtionalUserInfo = result.additionalUserInfo;
-      const isNewUser = addtionalUserInfo?.isNewUser;
-
+      const isNewUser = result?._tokenResponse?.isNewUser;
+      console.log(user);
+      console.log(result);
+      console.log(isNewUser);
       if (!isNewUser) {
         return user;
       }
@@ -236,9 +236,6 @@ export const loginInWithGoogle = async () => {
       };
 
       await createNewUser({ id: user.uid, data: userDetails });
-
-      // IdP data available using getAdditionalUserInfo(result)
-      // ...
 
       return user;
     });
