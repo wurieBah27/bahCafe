@@ -17,6 +17,7 @@ import useCreateUser from "./customersHooks/useCreateUser";
 import { fetchAddress, getCustomer } from "./customerState/customerSlice";
 import { useDispatch, useSelector } from "react-redux";
 import LoginWithGoogleBtn from "../../components/LoginWithGoogleBtn";
+import { useSignInWithGoogle } from "./customersHooks/useLoginWithGoogle";
 
 const SignUpForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -99,11 +100,11 @@ const SignUpForm = () => {
                   <img src="/edama-icon.jpg" alt="" />
                 </Link>
 
-                <h1 className="mt-2 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
+                <h1 className="mt-2 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl dark:text-slate-50">
                   Welcome to MT CAFE ☕
                 </h1>
 
-                <p className="mt-4 leading-relaxed text-gray-500">
+                <p className="mt-4 leading-relaxed text-gray-500 dark:text-slate-300">
                   Create an account to enjoy all the services we offer. Stay
                   updated with our latest news and promotions!
                 </p>
