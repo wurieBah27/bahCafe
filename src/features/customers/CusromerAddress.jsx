@@ -35,17 +35,6 @@ const CusromerAddress = () => {
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
     libraries, // Use the constant here
   });
-
-  useEffect(() => {
-    if (!latitude && !longitude) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        const lat = position.coords.latitude;
-        const lng = position.coords.longitude;
-        setClickedCords({ lat, lng });
-      });
-    }
-  }, []);
-
   const [directions, setDirections] = useState(null);
   const [distance, setDistance] = useState({});
   const [clickedCords, setClickedCords] = useState(null);
@@ -99,15 +88,37 @@ const CusromerAddress = () => {
   const longitude = position?.lng;
   const latLng = { lat: latitude, lng: longitude };
 
-  if (!isLoaded || isUpdatingUser) {
-    return <Spinner />;
-  }
-
   const mapClickedLocation = (event) => {
     const lat = event?.latLng?.lat();
     const lng = event?.latLng?.lng();
     setClickedCords({ lat, lng });
   };
+
+  useEffect(() => {
+    if (!latitude && !longitude) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        const lat = position.coords.latitude;
+        const lng = position.coords.longitude;
+        setClickedCords({ lat, lng });
+      });
+
+      updateUserInformation({
+        id: uid,
+        userObj: {
+          ...data,
+          address: {
+            position: clickedCords || "",
+            city: city || "",
+            county: county || "",
+            country: country || "",
+            formatted: formatted || "",
+            town: town || "",
+            continent: continent || "",
+          },
+        },
+      });
+    }
+  }, []);
 
   const trial = async () => {
     try {
@@ -133,6 +144,8 @@ const CusromerAddress = () => {
       throw new Error("Error fetching address");
     }
   };
+
+  if (!isLoaded || isUpdatingUser) return <Spinner />;
 
   const CustomMarker = ({ position, profileUrl, address }) => (
     <OverlayView
