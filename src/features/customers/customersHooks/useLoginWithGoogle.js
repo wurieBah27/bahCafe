@@ -34,6 +34,7 @@ export const useSignInWithGoogle = () => {
       },
       onError: (error) => {
         console.log(error);
+        toast.error("Error logging in user!");
       },
     });
   return { signInUserWithGoogle, isSigningWithGoogle };

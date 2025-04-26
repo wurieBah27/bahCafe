@@ -146,6 +146,13 @@ export const signupWithGoogle = async () => {
       // The signed-in user info.
       const user = result.user;
 
+      const addtionalUserInfo = result.additionalUserInfo;
+      const isNewUser = addtionalUserInfo?.isNewUser;
+
+      if (!isNewUser) {
+        return user;
+      }
+
       const userDetails = {
         email: user?.email || "",
         name: user?.displayName || "",
@@ -201,6 +208,37 @@ export const loginInWithGoogle = async () => {
       const token = credential.accessToken;
       // The signed-in user info.
       const user = result.user;
+
+      const addtionalUserInfo = result.additionalUserInfo;
+      const isNewUser = addtionalUserInfo?.isNewUser;
+
+      if (!isNewUser) {
+        return user;
+      }
+
+      const userDetails = {
+        email: user?.email || "",
+        name: user?.displayName || "",
+        phone: "",
+        dateOfBirth: "",
+        address: {
+          position: "",
+          city: "",
+          county: "",
+          country: "",
+          formatted: "",
+          town: "",
+          continent: "",
+        },
+        profileUrl: user?.photoURL || "",
+        createdAt: serverTimestamp(),
+        orderHistory: [],
+      };
+
+      await createNewUser({ id: user.uid, data: userDetails });
+
+      // IdP data available using getAdditionalUserInfo(result)
+      // ...
 
       return user;
     });
