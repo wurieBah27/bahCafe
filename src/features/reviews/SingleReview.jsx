@@ -1,15 +1,23 @@
-import { Link } from "react-router-dom";
 import { StarRating } from "../../components/StarRating";
 import { format } from "date-fns";
+import { Dropdown, DropdownItem } from "flowbite-react";
+import ConfirmDeleteModal from "../../components/ConfirmDeleteModal";
+import { useState } from "react";
+import { getUser } from "../customers/customersHooks/useGetCurrentUser";
 
 const SingleReview = ({ data = {} }) => {
-  const { user = {}, comment, createdAt, rating, title } = data;
-  const { name, profilePic } = user;
+  const [openModal, setOpenModal] = useState(false);
 
+  const { uid } = getUser();
+  const { user = {}, comment, createdAt, rating, title, userId, id } = data;
+  const { name, profilePic } = user;
+  console.log(data);
   const dateCreated = format(createdAt, "Pp");
 
+  const handleOpenModal = () => setOpenModal(!openModal);
+
   return (
-    <article className="mb-3 rounded-lg bg-white p-2 text-base dark:bg-gray-900">
+    <article className="mb-3 rounded-lg bg-white p-2 text-base dark:bg-gray-600">
       <footer className="mb-2 flex items-center justify-between">
         <div className="flex flex-wrap items-center">
           <div>
@@ -28,56 +36,48 @@ const SingleReview = ({ data = {} }) => {
             </time>
           </p>
         </div>
-
-        <button
-          id="dropdownComment1Button"
-          data-dropdown-toggle="dropdownComment1"
-          className="inline-flex items-center rounded-lg bg-white p-2 text-center text-sm font-medium text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-50 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-          type="button"
-        >
-          <svg
-            className="h-4 w-4"
-            aria-hidden="true"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="currentColor"
-            viewBox="0 0 16 3"
-          >
-            <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
-          </svg>
-          <span className="sr-only">Comment settings</span>
-        </button>
-        <div
-          id="dropdownComment1"
-          className="z-10 hidden w-36 divide-y divide-gray-100 rounded bg-white shadow dark:divide-gray-600 dark:bg-gray-700"
-        >
-          <ul
-            className="py-1 text-sm text-gray-700 dark:text-gray-200"
-            aria-labelledby="dropdownMenuIconHorizontalButton"
-          >
-            <li>
-              <a
-                href="#"
-                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+        <Dropdown
+          label=""
+          dismissOnClick={false}
+          placement="left-start"
+          renderTrigger={() => (
+            <span>
+              {" "}
+              <button
+                id="dropdownComment1Button"
+                data-dropdown-toggle="dropdownComment1"
+                className="inline-flex items-center rounded-lg bg-white p-2 text-center text-sm font-medium text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-50 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                type="button"
               >
-                Edit
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                <svg
+                  className="h-4 w-4"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 16 3"
+                >
+                  <path d="M2 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm6.041 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM14 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Z" />
+                </svg>
+                <span className="sr-only">Comment settings</span>
+              </button>
+            </span>
+          )}
+        >
+          {uid === userId && (
+            <>
+              <DropdownItem>Edit</DropdownItem>
+              <DropdownItem
+                onClick={handleOpenModal}
+                className="text-red-600 dark:text-red-500"
               >
-                Remove
-              </a>
-            </li>
-            <li>
-              <Link className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                Report
-              </Link>
-            </li>
-          </ul>
-        </div>
+                Delete
+              </DropdownItem>
+            </>
+          )}
+          <DropdownItem>Report</DropdownItem>
+        </Dropdown>
       </footer>
+
       <div className="my-2">
         <StarRating defaultRating={rating} size="16" />
       </div>
@@ -108,6 +108,11 @@ const SingleReview = ({ data = {} }) => {
           Reply
         </button>
       </div>
+      <ConfirmDeleteModal
+        openModal={openModal}
+        handleOpenModal={handleOpenModal}
+        reviewId={id}
+      />
     </article>
   );
 };

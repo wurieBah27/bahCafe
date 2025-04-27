@@ -11,9 +11,9 @@ const LoginPage = () => {
         <div className="px-4 sm:px-8">
           <span
             onClick={() => navigate("/")}
-            className="mb-1 inline-block cursor-pointer"
+            className="mb-1 inline-block cursor-pointer dark:bg-gray-600"
           >
-            <HiChevronLeft className="size-10 font-bold text-gray-800" />
+            <HiChevronLeft className="size-10 font-bold text-gray-800 dark:text-gray-300" />
           </span>{" "}
         </div>
         <div>

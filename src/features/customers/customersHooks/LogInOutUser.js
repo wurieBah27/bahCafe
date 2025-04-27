@@ -34,7 +34,7 @@ export const LogOutUser = () => {
         queryKey: ["currentLogCustomer"],
         exact: true,
       });
-      navigate("/login");
+      navigate("/");
       toast.success("User logged out successfully!");
     },
     onError: (data) => {

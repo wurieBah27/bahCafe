@@ -1,6 +1,8 @@
 import {
   addDoc,
   collection,
+  deleteDoc,
+  doc,
   getDocs,
   orderBy,
   query,
@@ -40,6 +42,16 @@ export const getItemReviews = async ({ id }) => {
     });
 
     return data;
+  } catch (error) {
+    console.log(error);
+    throw new Error(error);
+  }
+};
+
+export const deleteReviews = async ({ id }) => {
+  try {
+    const docRef = doc(db, "ProductReviews", id);
+    await deleteDoc(docRef);
   } catch (error) {
     console.log(error);
     throw new Error(error);

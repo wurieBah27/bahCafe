@@ -2,13 +2,12 @@ import { Button, Label, TextInput } from "flowbite-react";
 import { useForm } from "react-hook-form";
 import { HiMail } from "react-icons/hi";
 import { HiMiniLockClosed } from "react-icons/hi2";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { LogInUser } from "./customersHooks/LogInOutUser";
 import useLoginWithGoogle from "./customersHooks/useLoginWithGoogle";
 import LoginWithGoogleBtn from "../../components/LoginWithGoogleBtn";
 
 const LoginForm = () => {
-  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -27,10 +26,8 @@ const LoginForm = () => {
       console.log(error);
       throw new Error(error);
     }
-    console.log(data);
   };
 
-  console.log(errors);
   return (
     <div>
       <section className="min-h-screen">
@@ -56,11 +53,11 @@ const LoginForm = () => {
                   </svg>
                 </Link>
 
-                <h1 className="mt-2 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl">
+                <h1 className="mt-2 text-2xl font-bold text-gray-900 sm:text-3xl md:text-4xl dark:text-slate-50">
                   Welcome to MT CAFE ☕
                 </h1>
 
-                <p className="mt-4 leading-relaxed text-gray-500">
+                <p className="mt-4 leading-relaxed text-gray-500 dark:text-slate-300">
                   Create an account to enjoy all the services we offer. Stay
                   updated with our latest news and promotions!
                 </p>
@@ -146,18 +143,18 @@ const LoginForm = () => {
                     Log in
                   </Button>
 
-                  <p className="mt-4 text-sm text-gray-500 sm:mt-0">
+                  <p className="mt-4 text-sm text-gray-700 sm:mt-0 dark:text-gray-300">
                     Dont't have an account?
                     <Link
                       to="/signin"
-                      className="text-sm font-bold text-blue-700 underline"
+                      className="ml-2 text-sm font-bold text-blue-700 underline dark:text-blue-500"
                     >
                       {"   "} Sign up
                     </Link>
                   </p>
                 </div>
               </form>
-              <div className="my-5 text-center">
+              <div className="my-5 text-center text-gray-700 dark:text-gray-300">
                 <span>OR</span>
               </div>
               <div>

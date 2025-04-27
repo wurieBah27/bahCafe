@@ -26,7 +26,7 @@ const ItemDetails = () => {
   const { singleMenueItem, isGettingSingleItem, itemID } = useGetSingleItem();
 
   const itemCurrentQuantity = useSelector(getCurrentItemQuantityByID(itemID));
-  const { reviewsData, isFetchingReviews } = usegetItemReview(itemID);
+  const { reviewsData } = usegetItemReview(itemID);
   const totalReviews = reviewsData?.length || 0;
   const averageRatings =
     reviewsData?.reduce((acc, curr) => acc + curr?.rating, 0) / totalReviews;

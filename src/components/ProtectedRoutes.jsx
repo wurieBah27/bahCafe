@@ -3,12 +3,14 @@ import { useNavigate } from "react-router-dom";
 import useGetCurrentUser from "../features/customers/customersHooks/useGetCurrentUser";
 
 const ProtectedRoutes = ({ children }) => {
-  const { emailVerified: isAuthenticated } = useGetCurrentUser();
+  const { emailVerified: isAuthenticated, uid } = useGetCurrentUser();
   const navigate = useNavigate();
-  console.log(isAuthenticated);
+
   useEffect(() => {
     if (!isAuthenticated) {
       navigate("/login");
+    } else if (isAuthenticated && uid) {
+      navigate("/");
     }
   }, [isAuthenticated, navigate]);
 
