@@ -1,16 +1,23 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useGetCurrentUser from "../features/customers/customersHooks/useGetCurrentUser";
+import Spinner from "./Spinner";
 
 const ProtectedRoutes = ({ children }) => {
-  const { emailVerified: isAuthenticated, uid } = useGetCurrentUser();
+  const {
+    emailVerified: isAuthenticated,
+    uid,
+    isLoading,
+  } = useGetCurrentUser();
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isAuthenticated) {
+    if (!isAuthenticated && !isLoading) {
+      // Redirect to the login page if the user is not authenticated
       navigate("/login");
     }
-  }, [isAuthenticated, navigate]);
+  }, [isAuthenticated, navigate, isLoading]);
+  if (isLoading) return <Spinner />; // Optionally, you can show a loading spinner or placeholder while checking authentication
 
   return isAuthenticated ? <>{children}</> : null;
 };

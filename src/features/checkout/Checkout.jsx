@@ -71,7 +71,7 @@ const Checkout = () => {
   const onSubmit = async (data) => {
     try {
       if (!uid) return;
-
+      console.log(data.deliveryType);
       const newOrder = {
         Order_status: "Pending",
         createdAt: serverTimestamp(),
@@ -95,12 +95,13 @@ const Checkout = () => {
         payment_status: "Pending",
         delivery_address: {
           city: address,
-          lat,
-          lng,
-          continent,
-          country,
-          town,
-          state: county,
+          lat: lat || 0,
+          lng: lng || 0,
+          continent: continent || "",
+          country: country || "",
+          town: town || "",
+          state: county || "",
+          formatted: formatted || "",
           street: formatted || "",
         },
         sub_total: totalPrice,
@@ -113,7 +114,9 @@ const Checkout = () => {
 
       const confirmOrder = await confirming();
       if (confirmOrder) {
-        createOrders(newOrder);
+        console.log(data.deliveryType);
+        console.log(newOrder);
+        await createOrders(newOrder);
       }
     } catch (error) {
       throw new Error(error);
