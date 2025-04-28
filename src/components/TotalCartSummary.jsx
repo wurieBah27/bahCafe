@@ -1,7 +1,7 @@
 const TotalCartSummary = ({ originalPrice = 0, deliveryCharge = 0 }) => {
   const amountBeforeTax = (originalPrice + deliveryCharge) / 1.05;
   const tax = amountBeforeTax * 0.05;
-
+  console.log(deliveryCharge);
   return (
     <div className="mx-auto mt-6 max-w-4xl flex-1 space-y-6 lg:mt-0 lg:w-full">
       <div className="space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm sm:p-6 dark:border-white dark:bg-gray-600">

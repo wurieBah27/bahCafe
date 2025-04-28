@@ -30,10 +30,9 @@ const Checkout = () => {
   const { createOrders, isCreatingOrder } = useCreateOrder();
   const deliveryCharge = 15;
   const navigate = useNavigate();
-  const [deliveryType, setDeliveryType] = useState("Delivery");
 
-  const [setDeliveryCharge, setsetDeliveryCharge] = useState("Delivery");
-
+  const [deliveryCharges, setDeliveryCharges] = useState("Delivery");
+  console.log(deliveryCharges);
   /* derived state calculations */
   const amountBeforeTax = (totalPrice + deliveryCharge) / 1.05;
   const tax = amountBeforeTax * 0.05;
@@ -92,7 +91,7 @@ const Checkout = () => {
         special_instructions: data.comment || "",
         notes: data.comment || "",
         payment_method: data.paymentMethod,
-        order_type: data.deliveryType,
+        order_type: deliveryCharges,
         payment_status: "Pending",
         delivery_address: {
           city: address,
@@ -108,7 +107,7 @@ const Checkout = () => {
         sub_total: totalPrice,
         tax,
         total,
-        deliveyCharge: data?.deliveryType === "Delivery" ? deliveryCharge : 0,
+        deliveyCharge: deliveryCharges === "Delivery" ? deliveryCharge : 0,
         items: cart,
         userId: uid,
       };
@@ -126,7 +125,7 @@ const Checkout = () => {
     }
   };
 
-  console.log(setDeliveryCharge);
+  console.log(deliveryCharges);
   if (!cart.length) navigate(-1);
   return (
     <div>
@@ -255,10 +254,7 @@ const Checkout = () => {
                             id="pickup"
                             name="deliveryType"
                             value="Pick up"
-                            onChange={(e) =>
-                              setsetDeliveryCharge(e.target.value)
-                            }
-                            {...register("deliveryType", { required: true })}
+                            onChange={(e) => setDeliveryCharges(e.target.value)}
                           />
 
                           <Label
@@ -273,12 +269,9 @@ const Checkout = () => {
                           <Radio
                             id="delivery"
                             name="deliveryType"
-                            {...register("deliveryType", { required: true })}
                             value="Delivery"
                             defaultChecked
-                            onChange={(e) =>
-                              setsetDeliveryCharge(e.target.value)
-                            }
+                            onChange={(e) => setDeliveryCharges(e.target.value)}
                           />
                           <Label
                             htmlFor="delivery"
@@ -361,9 +354,7 @@ const Checkout = () => {
                     <div className="col-span-6">
                       <TotalCartSummary
                         originalPrice={totalPrice}
-                        deliveryCharge={
-                          setDeliveryCharge === "Delivery" ? 15 : 0
-                        }
+                        deliveryCharge={deliveryCharges === "Delivery" ? 15 : 0}
                       />
                     </div>
                     <div className="col-span-6 mt-5">
