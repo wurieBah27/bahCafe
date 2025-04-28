@@ -255,9 +255,6 @@ const Checkout = () => {
                             name="deliveryType"
                             value="Pick up"
                             {...register("deliveryType", { required: true })}
-                            onChange={(e) =>
-                              setsetDeliveryCharge(e.target.value)
-                            }
                           />
 
                           <Label
@@ -274,9 +271,6 @@ const Checkout = () => {
                             name="deliveryType"
                             {...register("deliveryType", { required: true })}
                             value="Delivery"
-                            onChange={(e) =>
-                              setsetDeliveryCharge(e.target.value)
-                            }
                           />
                           <Label
                             htmlFor="delivery"
