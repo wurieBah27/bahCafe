@@ -30,6 +30,7 @@ const Checkout = () => {
   const { createOrders, isCreatingOrder } = useCreateOrder();
   const deliveryCharge = 15;
   const navigate = useNavigate();
+  const [deliveryType, setDeliveryType] = useState("Delivery");
 
   const [setDeliveryCharge, setsetDeliveryCharge] = useState("Delivery");
 
@@ -254,6 +255,9 @@ const Checkout = () => {
                             id="pickup"
                             name="deliveryType"
                             value="Pick up"
+                            onChange={(e) =>
+                              setsetDeliveryCharge(e.target.value)
+                            }
                             {...register("deliveryType", { required: true })}
                           />
 
@@ -271,6 +275,10 @@ const Checkout = () => {
                             name="deliveryType"
                             {...register("deliveryType", { required: true })}
                             value="Delivery"
+                            defaultChecked
+                            onChange={(e) =>
+                              setsetDeliveryCharge(e.target.value)
+                            }
                           />
                           <Label
                             htmlFor="delivery"
