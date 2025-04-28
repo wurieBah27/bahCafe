@@ -274,7 +274,6 @@ const Checkout = () => {
                             name="deliveryType"
                             {...register("deliveryType", { required: true })}
                             value="Delivery"
-                            defaultChecked
                             onChange={(e) =>
                               setsetDeliveryCharge(e.target.value)
                             }
