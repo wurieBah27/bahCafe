@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import Categories from "../components/Categories";
 import HeroSection from "../components/HeroSection";
 import SearchInput from "../components/SearchInput";
@@ -7,10 +9,9 @@ import MenueItems from "../features/menue/MenueItems";
 import CategoriesHeader from "../sections/CategoriesHeader";
 import FilterCategoryBtns from "../components/FilterCategoryBtns";
 
-const Home = () => {
-  const { menueItems, isFetchingMenue } = useGetAllItems();
-
-  const groupedItems = menueItems?.reduce((acc, item) => {
+/*==== helper funxtion to reduce itemsMenue==== */
+const handleReduceItems = (array) =>
+  array?.reduce((acc, item) => {
     const category = item?.subCategories?.[0]?.name || "Uncategorized";
     if (!acc[category]) {
       acc[category] = [];
@@ -18,11 +19,29 @@ const Home = () => {
     acc[category].push(item);
     return acc;
   }, {});
+/* ========================================== */
+
+const Home = () => {
+  const { menueItems, isFetchingMenue } = useGetAllItems();
+  const [filterByCategory, setFilterByCategory] = useState([]);
+
+  useEffect(() => {
+    if (menueItems.length > 0) {
+      setFilterByCategory(menueItems); // Only set state if it's not already set
+    }
+  }, [menueItems]);
+
+  const groupedItems = handleReduceItems(filterByCategory);
+  const groupedItems1 = handleReduceItems(menueItems);
+
+  const handleFilteredItems = (category) => {
+    setFilterByCategory(groupedItems1[`${category}`]);
+  };
 
   if (!groupedItems || isFetchingMenue) return <Spinner />;
   return (
     <div>
-      <div className="pb-20">
+      <div className="">
         <div>
           <HeroSection />
         </div>
@@ -34,15 +53,33 @@ const Home = () => {
 
         <div className="mt-5 px-2">
           <Categories />
-          <FilterCategoryBtns groupedItems={groupedItems} />
+          <FilterCategoryBtns
+            groupedItems={groupedItems1}
+            onClickBtn={handleFilteredItems}
+          />
         </div>
+        {menueItems.length > 0 && (
+          <div>
+            {Object?.keys(groupedItems).map((category) => (
+              <motion.div
+                key={category}
+                id={category}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1 }}
+              >
+                <CategoriesHeader category={category} />
+                <MenueItems items={groupedItems[category]} />
+              </motion.div>
+            ))}
+          </div>
+        )}
         <div>
-          {Object?.keys(groupedItems).map((category) => (
-            <div key={category} id={category}>
-              <CategoriesHeader category={category} />
-              <MenueItems items={groupedItems[category]} />
-            </div>
-          ))}
+          {menueItems?.length === 0 && (
+            <p className="text-center text-xl text-gray-600">
+              No items found in this category.
+            </p>
+          )}
         </div>
       </div>
     </div>

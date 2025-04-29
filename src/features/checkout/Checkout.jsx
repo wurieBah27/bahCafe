@@ -12,6 +12,8 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { FaCreditCard, FaPeopleCarry } from "react-icons/fa";
+import { FaTruckArrowRight } from "react-icons/fa6";
+
 import { useDispatch, useSelector } from "react-redux";
 import { emptyCart, getCart, totalCartPrice } from "../cart/cartSlice";
 import { getUser } from "../customers/customersHooks/useGetCurrentUser";
@@ -258,10 +260,10 @@ const Checkout = () => {
                           />
 
                           <Label
-                            htmlFor="pickup "
+                            htmlFor="pickup"
                             className="flex items-center gap-1"
                           >
-                            <FaPeopleCarry className="h-6 w-6 text-blue-700" />
+                            <FaPeopleCarry className="mr-2 h-6 w-6 text-blue-700 dark:text-gray-400" />
                             Pick up
                           </Label>
                         </div>
@@ -277,12 +279,8 @@ const Checkout = () => {
                             htmlFor="delivery"
                             className="flex items-center gap-1"
                           >
-                            <img
-                              src="/car-95.png"
-                              alt=""
-                              className="h-8 w-8 object-contain"
-                            />
-                            <span>Delivery</span>{" "}
+                            <FaTruckArrowRight className="mr-2 h-6 w-6 text-blue-700 dark:text-gray-400" />
+                            <span>Delivery</span>
                           </Label>
                         </div>
                       </fieldset>
@@ -305,7 +303,7 @@ const Checkout = () => {
                               htmlFor="CashOnDelivery"
                               className="flex items-center gap-1"
                             >
-                              <HiOutlineCash className="h-6 w-6 text-blue-700" />
+                              <HiOutlineCash className="mr-2 h-6 w-6 text-blue-700 dark:text-gray-400" />
                               Cash on delivery{" "}
                             </Label>
                           </div>
@@ -320,7 +318,7 @@ const Checkout = () => {
                               htmlFor="OnlinePayment"
                               className="flex items-center gap-1"
                             >
-                              <HiBuildingLibrary className="h-6 w-6 text-blue-700" />
+                              <HiBuildingLibrary className="mr-2 h-6 w-6 text-blue-700 dark:text-gray-400" />
                               Online Payment
                             </Label>
                           </div>
@@ -336,7 +334,7 @@ const Checkout = () => {
                               htmlFor="cardPayment"
                               className="flex items-center gap-1"
                             >
-                              <FaCreditCard className="h-6 w-6 text-blue-700" />
+                              <FaCreditCard className="mr-2 h-6 w-6 text-blue-700 dark:text-gray-400" />
                               Card Payment
                             </Label>
                           </div>

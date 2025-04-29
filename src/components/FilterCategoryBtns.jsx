@@ -1,18 +1,10 @@
 import { Button } from "flowbite-react";
 import React, { useEffect, useRef, useState } from "react";
-import { Link, useLocation, useSearchParams } from "react-router-dom";
 
-const FilterCategoryBtns = ({ groupedItems }) => {
-  const btnRef = useRef([]);
+const FilterCategoryBtns = ({ groupedItems, onClickBtn }) => {
   const [classes, setClasses] = useState(null);
 
   const btnsContainerRef = useRef("");
-  const location = useLocation(); // Get the current location object
-
-  const [searchParams] = useSearchParams();
-
-  const currentParams = searchParams.get("category");
-  // const linkTo = currentParams ? `/?${currentParams}#${item}` : `/#${item}`;
 
   useEffect(() => {
     const btnSelectObserver = new IntersectionObserver(
@@ -41,25 +33,6 @@ const FilterCategoryBtns = ({ groupedItems }) => {
       btnSelectObserver.disconnect();
     };
   }, []);
-  useEffect(() => {
-    // Check if there is a hash in the URL (e.g., #section-features)
-    if (location.hash) {
-      // Get the ID from the hash (remove the leading #)
-      const elementId = location.hash.substring(1);
-
-      // Find the corresponding element in the DOM
-      const targetElement = document.getElementById(elementId);
-
-      // If the element exists, scroll it into view
-      if (targetElement) {
-        // This is often necessary because the DOM update might be slightly delayed
-        targetElement.scrollIntoView({ behavior: "smooth" }); // Use smooth behavior for animation
-      }
-    } else {
-      // If no hash, optionally scroll to the top of the page
-      window.scrollTo(0, 0);
-    }
-  }, [location]); // Re-run this effect whenever the location object changes (including the hash)
 
   return (
     <div ref={(el) => (btnsContainerRef.current = el)} className={`observer`}>
@@ -68,29 +41,15 @@ const FilterCategoryBtns = ({ groupedItems }) => {
       >
         <div className="mx-auto my-4 flex h-20 max-w-5xl items-center gap-5 overflow-x-auto rounded-md bg-gray-100 p-2 pb-4 transition-all dark:bg-gray-700">
           {Object.keys(groupedItems).map((item, index) => (
-            <Link
-              key={item}
-              to={
-                currentParams
-                  ? `/?category=${currentParams}#${item}`
-                  : `/#${item}`
-              }
+            <Button
+              color="light"
+              className="w-max text-nowrap capitalize transition-all"
+              pill
+              onClick={() => onClickBtn(item)}
+              key={index}
             >
-              <Button
-                color="light"
-                className="bg w-28 capitalize transition-all"
-                pill
-                ref={(e) => (btnRef.current[index] = e)}
-                onClick={(e) => {
-                  btnRef.current.forEach((item) => {
-                    item.classList.remove("observer-btns");
-                  });
-                  btnRef.current[index].classList.add("observer-btns");
-                }}
-              >
-                {item}{" "}
-              </Button>
-            </Link>
+              {item}{" "}
+            </Button>
           ))}
         </div>
       </div>
