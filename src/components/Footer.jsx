@@ -1,36 +1,49 @@
 import { Link } from "react-router-dom";
 import {
-  BsDribbble,
   BsFacebook,
-  BsGithub,
   BsInstagram,
-  BsMailbox,
   BsSnapchat,
   BsTiktok,
-  BsTwitter,
   BsWhatsapp,
 } from "react-icons/bs";
 import { HiOutlineMail, HiOutlinePhoneOutgoing } from "react-icons/hi";
-import { HiMapPin, HiOutlineMap, HiOutlineMapPin } from "react-icons/hi2";
+import { HiOutlineMapPin } from "react-icons/hi2";
+import useSettings from "../helpers/useSettings";
 
 const Footer = () => {
+  const { settingsData } = useSettings();
+  const {
+    Email,
+    companyName,
+    companyDescription,
+    phoneNumber,
+    socialMediaLinks = {},
+  } = settingsData || {};
+  const {
+    facebookLink,
+    instagramLink,
+    whatsappLink,
+    snapChatLink,
+    tiktokLink,
+    linkedInLink,
+  } = socialMediaLinks;
+  console.log(settingsData);
   return (
-    <footer className="bg-white dark:bg-gray-900">
+    <footer className="rounded-xl bg-white dark:bg-gray-900">
       <div className="mx-auto max-w-screen-xl px-4 pb-28 pt-16 sm:px-6 lg:px-8 lg:pt-24">
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
           <div>
             <div className="flex justify-center gap-4 text-teal-600 sm:justify-start dark:text-teal-300">
               <img src="/edama-icon.jpg" alt="" className="h-8 rounded-full" />
               <div>
                 <h1 className="text-2xl font-bold capitalize text-gray-900 dark:text-white">
-                  Bah cafe
+                  {companyName || "Company Name"}
                 </h1>
               </div>
             </div>
 
             <p className="mt-6 max-w-md text-center leading-relaxed text-gray-500 sm:text-left dark:text-gray-400">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Incidunt
-              consequuntur amet culpa cum itaque neque.
+              {companyDescription || "Company description goes here."}
             </p>
 
             <div className="mt-8 flex flex-col items-center justify-center gap-4 text-center sm:flex-row">
@@ -38,30 +51,35 @@ const Footer = () => {
             </div>
             <ul className="mt-4 flex justify-center gap-6 md:gap-8">
               <li>
-                <SocialMediaIcon
-                  Icon={BsWhatsapp}
-                  url="https://wa.me/message/7MOAKV5Y5G2LO1"
-                />
+                <SocialMediaIcon Icon={BsWhatsapp} url={whatsappLink} />
               </li>
 
-              <li>
-                <SocialMediaIcon Icon={BsInstagram} />
-              </li>
+              {instagramLink && (
+                <li>
+                  <SocialMediaIcon Icon={BsInstagram} url={instagramLink} />
+                </li>
+              )}
 
-              <li>
-                <SocialMediaIcon Icon={BsSnapchat} />
-              </li>
+              {snapChatLink && (
+                <li>
+                  <SocialMediaIcon Icon={BsSnapchat} url={snapChatLink} />
+                </li>
+              )}
 
-              <li>
-                <SocialMediaIcon Icon={BsFacebook} />
-              </li>
-              <li>
-                <SocialMediaIcon Icon={BsTiktok} />
-              </li>
+              {facebookLink && (
+                <li>
+                  <SocialMediaIcon Icon={BsFacebook} url={facebookLink} />
+                </li>
+              )}
+              {tiktokLink && (
+                <li>
+                  <SocialMediaIcon Icon={BsTiktok} url={tiktokLink} />
+                </li>
+              )}
             </ul>
           </div>
 
-          <div className="grid grid-cols-2 gap-8 max-[360px]:grid-cols-1 sm:grid-cols-2 lg:col-span-2">
+          <div>
             <div className="sm:text-left">
               <p className="text-lg font-medium text-gray-900 dark:text-white">
                 Contact Us
@@ -74,7 +92,7 @@ const Footer = () => {
 
                     <span className="text-gray-700 dark:text-gray-300">
                       {" "}
-                      john@doe.com{" "}
+                      {Email || "Not available"}
                     </span>
                   </Link>
                 </li>
@@ -83,17 +101,26 @@ const Footer = () => {
                   <Link className="flex items-center gap-1.5 ltr:sm:justify-start rtl:sm:justify-end">
                     <HiOutlinePhoneOutgoing className="size-5 shrink-0 text-gray-900 shadow-sm dark:text-white" />
                     <span className="text-gray-700 dark:text-gray-300">
-                      0123456789
+                      {phoneNumber || "Not available"}
                     </span>
                   </Link>
                 </li>
 
                 <li className="flex items-start gap-1.5 ltr:sm:justify-start rtl:sm:justify-end">
-                  <HiOutlineMapPin className="size-5 shrink-0 text-gray-900 shadow-sm dark:text-white" />
+                  <Link
+                    to={
+                      "https://www.google.com/maps/place/24%C2%B005'55.8%22N+53%C2%B029'49.2%22E/@24.0988293,53.4944153,17z/data=!3m1!4b1!4m4!3m3!8m2!3d24.0988293!4d53.4969902?entry=ttu&g_ep=EgoyMDI1MDQyNy4xIKXMDSoJLDEwMjExNDUzSAFQAw%3D%3D"
+                    }
+                    target="_blank"
+                    className="flex items-center gap-1.5 underline ltr:sm:justify-start rtl:sm:justify-end"
+                    rel="noreferrer"
+                  >
+                    <HiOutlineMapPin className="size-5 shrink-0 text-gray-900 shadow-sm dark:text-white" />
 
-                  <address className="-mt-0.5 not-italic text-gray-700 dark:text-gray-300">
-                    213 Lane, London, United Kingdom
-                  </address>
+                    <address className="-mt-0.5 not-italic text-gray-700 dark:text-gray-300">
+                      213 Lane, London, United Kingdom
+                    </address>
+                  </Link>
                 </li>
               </ul>
             </div>

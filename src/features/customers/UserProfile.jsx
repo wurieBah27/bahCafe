@@ -17,7 +17,6 @@ const UserProfile = () => {
   const formattedDate = date ? format(date, "PPpp") : "";
   const { signOut } = LogOutUser();
 
-  console.log(data);
   return (
     <div>
       <div>

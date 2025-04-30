@@ -61,14 +61,28 @@ export const createUser = async (userObj) => {
   }
 };
 
+export const signOutUser = async () => {
+  try {
+    signOut(auth);
+
+    return null;
+  } catch (error) {
+    console.log(error.message);
+    throw new Error(error);
+  }
+};
+
 export const getCurrentLoggedInUser = async () => {
   return new Promise((resolve, reject) => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         user.getIdTokenResult().then((idTokenResult) => {
           user.customer = idTokenResult.claims.customer || null;
+          user.isEmployee = idTokenResult.claims.isEmployee || null;
         });
-
+        if (user?.isEmployee) {
+          resolve({ isEmployee: user?.isEmployee });
+        }
         resolve(user);
       } else {
         reject("No user logged in");
@@ -103,17 +117,6 @@ export const signInUser = async ({ email, password }) => {
 };
 
 /* signout user  */
-
-export const signOutUser = async () => {
-  try {
-    signOut(auth);
-
-    return null;
-  } catch (error) {
-    console.log(error.message);
-    throw new Error(error);
-  }
-};
 
 /* update user  address */
 

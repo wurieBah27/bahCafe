@@ -34,7 +34,6 @@ const Checkout = () => {
   const navigate = useNavigate();
 
   const [deliveryCharges, setDeliveryCharges] = useState("Delivery");
-  console.log(deliveryCharges);
   /* derived state calculations */
   const amountBeforeTax = (totalPrice + deliveryCharge) / 1.05;
   const tax = amountBeforeTax * 0.05;
@@ -73,7 +72,6 @@ const Checkout = () => {
   const onSubmit = async (data) => {
     try {
       if (!uid) return;
-      console.log(data.deliveryType);
       const newOrder = {
         Order_status: "Pending",
         createdAt: serverTimestamp(),
@@ -127,7 +125,6 @@ const Checkout = () => {
     }
   };
 
-  console.log(deliveryCharges);
   if (!cart.length) navigate(-1);
   return (
     <div>
