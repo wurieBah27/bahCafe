@@ -2,7 +2,7 @@ import { Label, TextInput } from "flowbite-react";
 import { HiAdjustments } from "react-icons/hi";
 import { IoFilter } from "react-icons/io5";
 
-const SearchInput = () => {
+const SearchInput = ({ handleOnFocus }) => {
   return (
     <div className="mt-4 flex items-center gap-4 px-2 sm:px-6">
       <div className="max-w-full flex-1 text-xl font-semibold text-gray-900 dark:text-gray-100">
@@ -10,8 +10,9 @@ const SearchInput = () => {
           id="email4"
           className="text-xl"
           type="email"
+          onFocus={() => handleOnFocus()}
           rightIcon={HiAdjustments}
-          placeholder="How mai help you...."
+          placeholder="How may I help you...."
           required
         />
       </div>

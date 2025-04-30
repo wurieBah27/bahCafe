@@ -8,6 +8,7 @@ import useGetAllItems from "../features/menue/menueHooks/useGetAllItems";
 import MenueItems from "../features/menue/MenueItems";
 import CategoriesHeader from "../sections/CategoriesHeader";
 import FilterCategoryBtns from "../components/FilterCategoryBtns";
+import { useNavigate } from "react-router-dom";
 
 /*==== helper funxtion to reduce itemsMenue==== */
 const handleReduceItems = (array) =>
@@ -24,7 +25,11 @@ const handleReduceItems = (array) =>
 const Home = () => {
   const { menueItems, isFetchingMenue } = useGetAllItems();
   const [filterByCategory, setFilterByCategory] = useState([]);
+  const navigate = useNavigate();
 
+  const handleOnFocus = () => {
+    navigate("/search-products");
+  };
   useEffect(() => {
     if (menueItems.length > 0) {
       setFilterByCategory(menueItems); // Only set state if it's not already set
@@ -47,7 +52,7 @@ const Home = () => {
         </div>
         {/* <AnimationWrapper> */}
         <div>
-          <SearchInput />
+          <SearchInput handleOnFocus={handleOnFocus} />
         </div>
         {/* </AnimationWrapper> */}
 

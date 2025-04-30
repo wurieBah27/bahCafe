@@ -269,6 +269,11 @@ body {
   cursor: pointer;
 }
 
+.boxshadow {
+  -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+  box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+}
+
 @keyframes animate__fade__load {
   0% {
     opacity: 0;
@@ -326,9 +331,6 @@ body {
 
   .item .description {
     font-size: 16px;
-  }
-  .item .contentss {
-    padding-left: 5px;
   }
 
   .item .left .title_name {

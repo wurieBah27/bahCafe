@@ -29,7 +29,7 @@ const Footer = () => {
   } = socialMediaLinks;
   console.log(settingsData);
   return (
-    <footer className="rounded-xl bg-white dark:bg-gray-900">
+    <footer className="rounded-xl bg-white dark:bg-gray-700">
       <div className="mx-auto max-w-screen-xl px-4 pb-28 pt-16 sm:px-6 lg:px-8 lg:pt-24">
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
           <div>
