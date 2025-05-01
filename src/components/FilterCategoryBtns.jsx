@@ -39,11 +39,11 @@ const FilterCategoryBtns = ({ groupedItems, onClickBtn }) => {
       <div
         className={` ${!classes ? "fixed left-0 right-0 top-0" : ""} z-50 px-2`}
       >
-        <div className="mx-auto my-4 flex h-20 max-w-5xl items-center gap-5 overflow-x-auto rounded-md bg-gray-100 p-2 pb-4 transition-all dark:bg-gray-700">
+        <div className="mx-auto my-4 flex h-20 max-w-5xl items-center gap-2 overflow-x-auto text-nowrap rounded-md bg-gray-100 p-2 pb-4 transition-all sm:gap-5 dark:bg-gray-700">
           {Object.keys(groupedItems).map((item, index) => (
             <Button
               color="light"
-              className="w-max text-nowrap capitalize transition-all"
+              className="max-w-max text-nowrap capitalize transition-all"
               pill
               onClick={() => onClickBtn(item)}
               key={index}

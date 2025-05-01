@@ -24,7 +24,6 @@ const SingleMenueItems = ({ data = {} }) => {
 
   const { discount: discountValue = 0, disCountName } = discountPercent || {};
   const itemPrice = (discountValue / 100) * +price;
-  console.log(discountPercent);
   const totalReviews = singleItemReviews?.length || 0;
   const calculateAverage = singleItemReviews?.reduce(
     (acc, curr) => acc + curr?.rating || 0,
@@ -87,7 +86,7 @@ const SingleMenueItems = ({ data = {} }) => {
               </span>
             </div>
             <div className="price-calories mr-2 flex items-center justify-between max-[380px]:mt-2">
-              <div className="absolute right-2 top-0">
+              <div className="absolute -top-2 right-2">
                 <ItemRating
                   reviewCounts={totalReviews}
                   averageRating={averageRatings.toFixed(1)}
@@ -155,7 +154,7 @@ const SingleMenueItems = ({ data = {} }) => {
                 </span>
               </div>
               <div className="mr-2 flex items-center justify-between max-[380px]:mt-2">
-                <div className="absolute right-2 top-0">
+                <div className="absolute -top-2 right-2">
                   <ItemRating
                     reviewCounts={totalReviews}
                     averageRating={averageRatings.toFixed(1)}

@@ -1,6 +1,6 @@
 const ItemRating = ({ reviewCounts, averageRating = 0 }) => {
   return (
-    <div className="relative z-10 flex items-center justify-center gap-1 rounded-3xl bg-white px-2 py-[1px]">
+    <div className="relative flex items-center justify-center gap-1 rounded-3xl bg-white px-2 py-[1px]">
       <div className="flex h-full items-center justify-center text-sm font-semibold drop-shadow-md">
         {averageRating}
       </div>
