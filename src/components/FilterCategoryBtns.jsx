@@ -1,5 +1,6 @@
 import { Button } from "flowbite-react";
 import React, { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 
 const FilterCategoryBtns = ({ groupedItems, onClickBtn }) => {
   const [classes, setClasses] = useState(null);
@@ -21,7 +22,7 @@ const FilterCategoryBtns = ({ groupedItems, onClickBtn }) => {
         });
       },
       {
-        rootMargin: "-80px 0px 0px 0px",
+        rootMargin: "-88px 0px 0px 0px",
       },
     );
 
@@ -35,23 +36,25 @@ const FilterCategoryBtns = ({ groupedItems, onClickBtn }) => {
   }, []);
 
   return (
-    <div ref={(el) => (btnsContainerRef.current = el)} className={`observer`}>
-      <div
-        className={` ${!classes ? "fixed left-0 right-0 top-0" : ""} z-50 px-2`}
-      >
-        <div className="mx-auto my-4 flex h-20 max-w-5xl items-center gap-2 overflow-x-auto text-nowrap rounded-md bg-gray-100 p-2 pb-4 transition-all sm:gap-5 dark:bg-gray-700">
-          {Object.keys(groupedItems).map((item, index) => (
-            <Button
-              color="light"
-              className="max-w-max text-nowrap capitalize transition-all"
-              pill
-              onClick={() => onClickBtn(item)}
-              key={index}
-            >
-              {item}{" "}
-            </Button>
-          ))}
-        </div>
+    <div className="h-20">
+      <div ref={(el) => (btnsContainerRef.current = el)} className="observer">
+        <motion.div
+          className={` ${!classes ? "fixed left-0 right-0 top-0 px-2" : ""} z-50`}
+        >
+          <div className="mx-auto flex h-20 max-w-5xl items-center gap-2 overflow-x-auto text-nowrap rounded-md bg-gray-100 p-2 pb-4 transition-all sm:gap-5 dark:bg-gray-700">
+            {Object.keys(groupedItems).map((item, index) => (
+              <Button
+                color="light"
+                className="max-w-max text-nowrap capitalize transition-all"
+                pill
+                onClick={() => onClickBtn(item)}
+                key={index}
+              >
+                {item}{" "}
+              </Button>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </div>
   );
