@@ -24,7 +24,7 @@ const ItemDetails = () => {
   const dispatch = useDispatch();
 
   const { singleMenueItem, isGettingSingleItem, itemID } = useGetSingleItem();
-
+  console.log(singleMenueItem);
   const itemCurrentQuantity = useSelector(getCurrentItemQuantityByID(itemID));
   const { reviewsData } = usegetItemReview(itemID);
   const totalReviews = reviewsData?.length || 0;
@@ -55,16 +55,19 @@ const ItemDetails = () => {
   }, [location]);
 
   const handleAddToCart = (data) => {
-    const selectedOptions = options.map((option) => data[option.title]);
+    const selectedOptions = options.map((option) => data[option.title])?.flat();
     let optionPrices = [];
     if (selectedOptions) {
-      const testt = selectedOptions?.filter((option) => option !== null);
+      const testt = selectedOptions?.filter((option) => option !== false);
 
+      const seein = testt?.filter((option) => option !== false);
+      console.log(testt);
       optionPrices = testt?.map((option) => {
         const [_, itemPrice] = option?.split(" = ");
         return parseFloat(itemPrice);
       });
     }
+
     const totalOptionPrice = optionPrices?.reduce((acc, curr) => acc + curr, 0);
     const totalPrice = +price - itemPrice + totalOptionPrice;
     console.log(totalPrice);

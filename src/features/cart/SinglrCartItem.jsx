@@ -3,13 +3,12 @@ import { HiOutlineHeart } from "react-icons/hi";
 import { HiOutlineTrash } from "react-icons/hi2";
 import { useDispatch } from "react-redux";
 import { deleteItem } from "./cartSlice";
-import { httpsCallable } from "firebase/functions";
-import { functions } from "../../apis/firebaseJS/firebaseConfig";
+
 const SinglrCartItem = ({ data = {} }) => {
   const { id, name, unitPrice, totalPrice, image, quantity, options } = data;
 
   const dispatch = useDispatch();
-
+  console.log(options);
   const haandleDeleteItem = () => {
     dispatch(deleteItem(id));
   };
@@ -22,9 +21,6 @@ const SinglrCartItem = ({ data = {} }) => {
         role="dialog"
         tabIndex="-1"
       >
-        <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-          Order details
-        </h2>
         <button
           data-qa="cart-remove_item"
           className="sc-31fee6c0-17 emumkq absolute end-4 top-0 rounded-full bg-red-100 p-4 text-red-700 transition hover:scale-110 max-sm:bg-red-50 dark:bg-red-400 dark:text-white"
@@ -69,7 +65,8 @@ const SinglrCartItem = ({ data = {} }) => {
                         {options[key] !== null && (
                           <>
                             <dt className="mr-1 inline">{key}:</dt>
-                            <dd className="inline">{options[key]}</dd> {" ,"}
+                            <dd className="mt-1 inline">{options[key]}</dd>{" "}
+                            {","}
                           </>
                         )}{" "}
                       </div>

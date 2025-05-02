@@ -1,7 +1,6 @@
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 
 const CheckBox = ({ arrayObjs, name, isRequired }) => {
-  console.log(isRequired);
   return (
     <fieldset className="space-y-2">
       <legend className="text-primary flex w-full items-center justify-between text-lg font-semibold">
@@ -23,7 +22,7 @@ const CheckBox = ({ arrayObjs, name, isRequired }) => {
             <div className="flex items-center gap-4">
               <span>AED {item?.price}</span>
               <input
-                type="radio"
+                type={isRequired ? "radio" : "checkbox"}
                 required
                 name={name?.split(" ")?.join("")}
                 value={`${item?.name}=${item?.price}`}

@@ -26,7 +26,7 @@ const RadioInput = ({ arrayObjs, name, isRequired, register, errors }) => {
             <div className="flex items-center gap-4">
               <span>AED {item?.price}</span>
               <input
-                type={"radio"}
+                type={isRequired ? "radio" : "checkbox"}
                 id={item?.id}
                 value={`${item.name} = ${item?.price}`}
                 {...register(name, { required: isRequired })}
