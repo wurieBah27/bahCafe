@@ -59,6 +59,11 @@ const OrdersPage = () => {
           <SingleOrderItem key={order.id} order={order} />
         ))}
       </div>
+      {filteredOrders?.length === 0 && (
+        <div className="mt-10 flex items-center justify-center text-2xl font-semibold text-gray-500 dark:text-gray-400">
+          No orders found
+        </div>
+      )}
     </div>
   );
 };

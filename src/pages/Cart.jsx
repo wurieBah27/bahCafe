@@ -11,7 +11,7 @@ const Cart = () => {
   const isItemsInCart = cartItems?.length === 0;
   return (
     <div>
-      <div className="mx-auto py-4 pb-10">
+      <div className="mx-auto py-4 pb-32">
         <div className="px-4">
           <BackButton />
         </div>

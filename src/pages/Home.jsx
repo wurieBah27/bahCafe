@@ -9,6 +9,7 @@ import MenueItems from "../features/menue/MenueItems";
 import CategoriesHeader from "../sections/CategoriesHeader";
 import FilterCategoryBtns from "../components/FilterCategoryBtns";
 import { useNavigate } from "react-router-dom";
+import Footer from "../components/Footer";
 
 /*==== helper funxtion to reduce itemsMenue==== */
 const handleReduceItems = (array) =>
@@ -87,6 +88,7 @@ const Home = () => {
           )}
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

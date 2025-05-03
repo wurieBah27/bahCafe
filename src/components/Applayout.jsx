@@ -2,7 +2,6 @@ import { Outlet } from "react-router";
 import Header from "./Header";
 import BottomNav from "./BottomNav";
 import SidebarContainer from "./Sidebar";
-import Footer from "./Footer";
 
 const Applayout = () => {
   return (
@@ -21,9 +20,7 @@ const Applayout = () => {
         </div>
         <BottomNav />
       </main>
-      <footer>
-        <Footer />
-      </footer>
+      s
     </div>
   );
 };

@@ -99,7 +99,7 @@ const ItemDetails = () => {
       <div>
         <div
           id="menu_details_screen"
-          className="animate-slideInDown flex h-full min-h-52 w-full flex-col pb-10"
+          className="animate-slideInDown flex h-full min-h-52 w-full flex-col pb-32"
         >
           <div className="animate-fadeInDown relative flex h-full min-h-full w-full flex-col lg:h-max lg:min-h-max">
             <div className="flex max-h-fit items-center justify-center overflow-hidden drop-shadow-xl">
