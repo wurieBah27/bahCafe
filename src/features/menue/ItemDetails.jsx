@@ -14,7 +14,7 @@ import AddNotes from "../../components/AddNotes";
 import { addItemToCart, getCurrentItemQuantityByID } from "../cart/cartSlice";
 import { useForm } from "react-hook-form";
 import usegetItemReview from "../reviews/usegetItemReview";
-import { Rating } from "flowbite-react";
+import { Label, Rating, Textarea } from "flowbite-react";
 
 const ItemDetails = () => {
   const location = useLocation();
@@ -99,7 +99,7 @@ const ItemDetails = () => {
       <div>
         <div
           id="menu_details_screen"
-          className="animate-slideInDown flex h-full min-h-52 w-full flex-col"
+          className="animate-slideInDown flex h-full min-h-52 w-full flex-col pb-10"
         >
           <div className="animate-fadeInDown relative flex h-full min-h-full w-full flex-col lg:h-max lg:min-h-max">
             <div className="flex max-h-fit items-center justify-center overflow-hidden drop-shadow-xl">
@@ -112,7 +112,7 @@ const ItemDetails = () => {
             <form
               action="#"
               onSubmit={handleSubmit(onSubmit)}
-              className="bg-primary relative flex h-full min-h-[95vh] w-full flex-col gap-y-4 rounded-t-3xl px-4 pb-44 pt-6 dark:bg-gray-800"
+              className="bg-primary relative flex h-full min-h-[95vh] w-full flex-col gap-y-4 rounded-t-3xl pt-6 sm:px-4 dark:bg-gray-800"
             >
               <div className="flex w-full flex-col gap-y-8 sm:px-4 dark:text-gray-100">
                 <div className="absolute -top-4 right-2">
@@ -196,7 +196,7 @@ const ItemDetails = () => {
                         <div className="flex flex-col gap-y-2 dark:text-gray-100">
                           <div className="flex w-full items-center justify-between">
                             <div className="flex w-full items-center space-x-1.5">
-                              <p className="text-primary text-lg font-semibold dark:text-gray-100">
+                              <p className="text-primary text-lg font-semibold dark:text-gray-400">
                                 Notes
                               </p>
                             </div>
@@ -204,12 +204,28 @@ const ItemDetails = () => {
                           {notes?.map((note, index) => (
                             <div
                               key={note.id}
-                              className="text-primary flex w-full flex-col gap-y-2 px-4 dark:text-gray-300"
+                              className="text-primary flex w-full flex-col gap-y-2 px-4 dark:text-gray-100"
                             >
                               {`${index + 1}. ${note.name}`}
                             </div>
                           ))}
                         </div>
+                      </div>
+
+                      <div className="max-w-md">
+                        <div className="mb-2 block">
+                          <Label
+                            htmlFor="comment"
+                            className="dark:text-gray-400"
+                          >
+                            You have any special instructions ?
+                          </Label>
+                        </div>
+                        <Textarea
+                          id="comment"
+                          placeholder="Leave a comment..."
+                          rows={4}
+                        />
                       </div>
                     </div>
                   </div>
@@ -236,17 +252,21 @@ const ItemDetails = () => {
                         setOrderNote={setOrderNote}
                       />
                     </div>
-                    <div className="flex items-center justify-end">
-                      <MenueActionBtns
-                        id={itemID}
-                        itemCurrentQuantity={itemCurrentQuantity}
-                      />
-                      {itemCurrentQuantity === 0 && (
-                        <AddToCartBtn
-                          btnType={"submit"}
-                          type={"secondary"}
-                          onClick={handleSubmit}
+                    <div className="flex items-center">
+                      {itemCurrentQuantity > 0 && (
+                        <MenueActionBtns
+                          id={itemID}
+                          itemCurrentQuantity={itemCurrentQuantity}
                         />
+                      )}
+                      {itemCurrentQuantity === 0 && (
+                        <div className="w-full">
+                          <AddToCartBtn
+                            btnType={"submit"}
+                            type={"secondary"}
+                            onClick={handleSubmit}
+                          />
+                        </div>
                       )}
                     </div>{" "}
                   </div>

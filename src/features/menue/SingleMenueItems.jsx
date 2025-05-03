@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import MenueActionBtns from "./MenueActionBtns";
+import MenueActionBtns, { CustomBtn } from "./MenueActionBtns";
 import AddToCartBtn from "../../components/AddToCartBtn";
 import ItemRating from "../../components/ItemRating";
 import FavoritesBtn from "../../components/FavoritesBtn";
@@ -7,6 +7,8 @@ import { useSelector } from "react-redux";
 import { getCurrentItemQuantityByID } from "../cart/cartSlice";
 import { useEffect, useState } from "react";
 import { getItemReviews } from "../../apis/itemsReviews";
+import { IoBagAdd } from "react-icons/io5";
+import { HiPlus } from "react-icons/hi2";
 
 const SingleMenueItems = ({ data = {} }) => {
   const {
@@ -170,6 +172,7 @@ const SingleMenueItems = ({ data = {} }) => {
                       AED {(+price - itemPrice).toFixed(2)}
                     </span>
                     <AddToCartBtn type="primary" />
+                    {/* <CustomBtn icon={HiPlus} /> */}
                   </div>
                 ) : (
                   <p className="text-gray-900">Out of stock</p>

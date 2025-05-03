@@ -4,7 +4,7 @@ const RadioInput = ({ arrayObjs, name, isRequired, register, errors }) => {
   return (
     <fieldset className="space-y-2">
       <legend
-        className={`text-primary flex w-full items-center justify-between dark:text-gray-100 ${errors?.[name] ? "bg-red-200" : ""} text-lg font-semibold`}
+        className={`text-primary flex w-full items-center justify-between rounded-lg p-1 text-xs sm:text-xl dark:text-gray-400 ${errors?.[name] ? "bg-red-200 dark:text-gray-700" : ""} text-lg font-semibold`}
       >
         <span>
           {name} {errors?.[name] ? "is required" : ""}

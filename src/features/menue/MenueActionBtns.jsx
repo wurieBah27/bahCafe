@@ -5,7 +5,7 @@ import {
   incrementItemQuantity,
 } from "../cart/cartSlice";
 
-function CustomBtn({ icon: Icon, onClick }) {
+export function CustomBtn({ icon: Icon, onClick }) {
   return (
     <button
       onClick={onClick}
@@ -20,7 +20,6 @@ function CustomBtn({ icon: Icon, onClick }) {
 
 const MenueActionBtns = ({ id, itemCurrentQuantity }) => {
   const itemQuantity = itemCurrentQuantity > 0;
-  const items = JSON.parse(localStorage.getItem("cart")) || [];
 
   const dispatch = useDispatch();
   const handleInc = () => {

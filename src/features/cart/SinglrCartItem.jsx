@@ -23,14 +23,14 @@ const SinglrCartItem = ({ data = {} }) => {
       >
         <button
           data-qa="cart-remove_item"
-          className="sc-31fee6c0-17 emumkq absolute end-4 top-0 rounded-full bg-red-100 p-4 text-red-700 transition hover:scale-110 max-sm:bg-red-50 dark:bg-red-400 dark:text-white"
+          className="sc-31fee6c0-17 emumkq dark:text-fray-500 absolute end-1 top-1 rounded-full bg-red-100 p-4 text-red-700 transition hover:scale-110 max-sm:bg-red-50 dark:bg-red-600 dark:text-gray-100"
           onClick={haandleDeleteItem}
         >
           <HiOutlineTrash className="yWWjo" />
           <span className="sc-31fee6c0-31 caHRdX">Delete</span>
         </button>
 
-        <div className="mt-4 space-y-6">
+        <div className="mt-5 space-y-6">
           <ul className="space-y-4">
             <li className="flex items-center gap-4">
               <img
@@ -58,7 +58,7 @@ const SinglrCartItem = ({ data = {} }) => {
                   </span>
                 </div>
 
-                <div className="mt-0.5 flex flex-wrap text-[10px] text-gray-600">
+                <div className="mt-0.5 flex flex-wrap text-[10px] text-gray-600 dark:text-gray-100">
                   {options &&
                     Object.keys(options).map((key) => (
                       <div key={key} className="mr-1">

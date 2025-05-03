@@ -11,8 +11,10 @@ const Cart = () => {
   const isItemsInCart = cartItems?.length === 0;
   return (
     <div>
-      <div className="mx-auto py-4 pb-32">
-        <BackButton />
+      <div className="mx-auto py-4 pb-10">
+        <div className="px-4">
+          <BackButton />
+        </div>
         <div className="flex justify-between">
           <div className="mx-auto my-0 flex min-w-0 flex-1 flex-col gap-4">
             <div className="w-full px-7 max-[500px]:px-3">

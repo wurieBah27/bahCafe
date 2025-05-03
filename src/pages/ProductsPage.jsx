@@ -24,7 +24,6 @@ const ProductsPage = () => {
   const currentFilterValue = searchParams.get("sortBy") || "";
   console.log(currentFilterValue);
   const inputRef = useRef(null);
-  console.log(menueItems);
 
   const filteredItems = menueItems.filter((item) =>
     item?.name?.toLowerCase().includes(searchTerm.toLowerCase()),
@@ -52,8 +51,8 @@ const ProductsPage = () => {
 
   if (isFetchingMenue) return <Spinner />;
   return (
-    <div className="z-[1001] px-4 py-8">
-      <div className="my-6 flex items-center justify-between">
+    <div className="z-[1001] px-0 py-2 sm:px-4 sm:py-8">
+      <div className="my-3 flex items-center justify-between px-4 sm:my-6">
         <span
           onClick={() => navigate("/")}
           className="mb-1 inline-block cursor-pointer dark:bg-gray-600"
@@ -70,7 +69,7 @@ const ProductsPage = () => {
         </div>
       </div>
 
-      <div className="">
+      <div className="px-4 shadow-md">
         <TextInput
           placeholder="Search for any products"
           icon={IoSearch}

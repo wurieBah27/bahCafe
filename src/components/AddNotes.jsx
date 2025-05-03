@@ -34,7 +34,7 @@ const AddNotes = ({ openModal, setOpenModal, notes, setOrderNote }) => {
         </Modal.Body>
         <Modal.Footer>
           <Button disabled={!notes} onClick={handleAddNotes}>
-            I accept
+            Add Notes
           </Button>
           <Button color="gray" onClick={handleDeclineNotes}>
             Decline
