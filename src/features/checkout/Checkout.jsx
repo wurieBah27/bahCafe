@@ -25,17 +25,23 @@ import { useState } from "react";
 import { fetchAddress } from "../customers/customerState/customerSlice";
 
 const Checkout = () => {
+  const [deliveryCharges, setDeliveryCharges] = useState("Delivery");
+
   const dispatch = useDispatch();
   const totalPrice = useSelector(totalCartPrice);
   const cart = useSelector(getCart);
+
   const { data, uid } = getUser();
   const { createOrders, isCreatingOrder } = useCreateOrder();
   const deliveryCharge = 15;
   const navigate = useNavigate();
 
-  const [deliveryCharges, setDeliveryCharges] = useState("Delivery");
   /* derived state calculations */
-  const amountBeforeTax = (totalPrice + deliveryCharge) / 1.05;
+  const deliveryChargeValue =
+    deliveryCharges === "Delivery" ? deliveryCharge : 0;
+  const deliveryChargeText =
+    deliveryCharges === "Delivery" ? "Delivery" : "Pick up";
+  const amountBeforeTax = (totalPrice + deliveryChargeValue) / 1.05;
   const tax = amountBeforeTax * 0.05;
   const total = amountBeforeTax + tax;
 
@@ -91,7 +97,7 @@ const Checkout = () => {
         special_instructions: data.comment || "",
         notes: data.comment || "",
         payment_method: data.paymentMethod,
-        order_type: deliveryCharges,
+        order_type: deliveryChargeText,
         payment_status: "Pending",
         delivery_address: {
           city: address,
@@ -107,7 +113,7 @@ const Checkout = () => {
         sub_total: totalPrice,
         tax,
         total,
-        deliveyCharge: deliveryCharges === "Delivery" ? deliveryCharge : 0,
+        deliveyCharge: deliveryChargeValue,
         items: cart,
         userId: uid,
       };

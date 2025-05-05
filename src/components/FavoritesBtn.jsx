@@ -1,6 +1,6 @@
 import React from "react";
 
-const FavoritesBtn = () => {
+const FavoritesBtn = ({ onClick, isFavorite = false }) => {
   return (
     <div className="absolute -top-2 left-2 flex flex-col gap-2.5">
       <div className="relative ml-1.5">
@@ -19,6 +19,7 @@ const FavoritesBtn = () => {
             height: "clamp(1.5rem, .5814vw + 1.40116rem, 2rem)",
             display: "flex",
           }}
+          onClick={onClick}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -27,8 +28,8 @@ const FavoritesBtn = () => {
             height="32"
             viewBox="0 0 24 24"
             strokeWidth="1.5"
-            stroke="#000000"
-            fill="none"
+            stroke={isFavorite ? "#0077ff" : "#000000"}
+            fill={isFavorite ? "#0077ff" : "none"}
             strokeLinecap="round"
             strokeLinejoin="round"
           >

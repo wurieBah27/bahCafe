@@ -19,6 +19,7 @@ const Footer = () => {
     phoneNumber,
     socialMediaLinks = {},
   } = settingsData || {};
+
   const {
     facebookLink,
     instagramLink,
@@ -27,7 +28,7 @@ const Footer = () => {
     tiktokLink,
     linkedInLink,
   } = socialMediaLinks;
-  console.log(settingsData);
+
   return (
     <footer className="rounded-xl bg-white dark:bg-gray-700">
       <div className="mx-auto max-w-screen-xl px-4 pb-28 pt-16 sm:px-6 lg:px-8 lg:pt-24">

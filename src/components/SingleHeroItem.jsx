@@ -4,7 +4,7 @@ const SingleHeroItem = () => {
   return (
     <div>
       <div className="max-h-40 sm:max-h-56">
-        <div className="flex h-full w-full items-center justify-end bg-gray-100">
+        <div className="flex h-full w-full items-center justify-end bg-gray-100 bg-[url(/img/take-out-cup2.jpg)]">
           <img
             src="/take-out-cup2.jpg"
             alt="Hero image"

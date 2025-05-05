@@ -8,10 +8,9 @@ import {
   signOut,
 } from "firebase/auth";
 
-import { auth, db, functions } from "./firebaseJS/firebaseConfig";
+import { auth, db } from "./firebaseJS/firebaseConfig";
 import uploadFile from "./uploadFile";
 import { doc, getDoc, serverTimestamp, setDoc } from "firebase/firestore";
-import { httpsCallable } from "firebase/functions";
 
 const createNewUser = async (userObj = {}) => {
   try {

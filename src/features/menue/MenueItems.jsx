@@ -1,3 +1,4 @@
+import getFavorites from "./menueHooks/getFavorites";
 import SingleMenueItems from "./SingleMenueItems";
 
 const MenueItems = ({ items }) => {

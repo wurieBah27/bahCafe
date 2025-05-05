@@ -18,6 +18,7 @@ import ReviewPage from "./pages/ReviewPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import ProductsPage from "./pages/ProductsPage";
+import Favorites from "./pages/Favorites";
 
 const router = createBrowserRouter([
   {
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart />,
+      },
+      {
+        path: "/favorites-items",
+        element: <Favorites />,
       },
       {
         path: "/order",

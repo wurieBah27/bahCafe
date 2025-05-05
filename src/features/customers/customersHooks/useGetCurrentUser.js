@@ -6,7 +6,7 @@ import {
 import toast from "react-hot-toast";
 import { LogOutUser } from "./LogInOutUser";
 
-const useGetCurrentUser = () => {
+export const useGetCurrentUser = () => {
   const { signOut } = LogOutUser();
   const { data: currentCustomerData = {}, isLoading } = useQuery({
     queryFn: getCurrentLoggedInUser,

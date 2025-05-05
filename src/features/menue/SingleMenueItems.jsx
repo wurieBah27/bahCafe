@@ -9,6 +9,10 @@ import { useEffect, useState } from "react";
 import { getItemReviews } from "../../apis/itemsReviews";
 import { IoBagAdd } from "react-icons/io5";
 import { HiPlus } from "react-icons/hi2";
+import useAddToFavorites from "./menueHooks/useAddToFavorites";
+import useGetCurrentUser from "../customers/customersHooks/useGetCurrentUser";
+import getFavorites from "./menueHooks/getFavorites";
+import useRemoveFromFavorites from "./menueHooks/useRemoveFromFavorites";
 
 const SingleMenueItems = ({ data = {} }) => {
   const {
@@ -22,7 +26,28 @@ const SingleMenueItems = ({ data = {} }) => {
   } = data;
   const [singleItemReviews, setSingleItemReviews] = useState([]);
   const itemCurrentQuantity = useSelector(getCurrentItemQuantityByID(id));
+  const { addItemToFavorite, isAddingToFavorites } = useAddToFavorites();
+  const { deleteFromFavorites, isDeletingFavorite } = useRemoveFromFavorites();
+  const { favorites } = getFavorites();
+
+  const isFavorite = favorites?.some((item) => item?.id === id);
+
+  console.log(isFavorite);
+  console.log(favorites);
+
+  const { uid } = useGetCurrentUser();
   const item = itemCurrentQuantity > 0;
+
+  /* add to favorites functions */
+
+  const handleAddToFavorites = () => {
+    if (!uid) return;
+    if (isFavorite) {
+      deleteFromFavorites({ uid: uid, itemId: id });
+    } else {
+      addItemToFavorite({ uid: uid, item: data });
+    }
+  };
 
   const { discount: discountValue = 0, disCountName } = discountPercent || {};
   const itemPrice = (discountValue / 100) * +price;
@@ -42,8 +67,10 @@ const SingleMenueItems = ({ data = {} }) => {
   }, []);
 
   return (
-    <div className="mb-8">
-      <div>
+    <div className="relative mb-8">
+      <div
+        className={`${isAddingToFavorites || isDeletingFavorite ? "opacity-50" : ""}`}
+      >
         {item ? (
           <div
             className={`${is_available ? "boxshadow bg-[#e1d5b9] dark:bg-gray-600" : "bg-gray-300 opacity-50"} relative flex -hidden w-full flex-col items-stretch justify-start rounded-lg p-3 shadow-[0_4px_6px_-1px_rgba(0,_0,_0,_0.1),_0_2px_4px_-2px_rgba(0,_0,_0,_0.05)] transition-all hover:translate-y-[4px] active:translate-y-[4px]`}
@@ -53,7 +80,7 @@ const SingleMenueItems = ({ data = {} }) => {
                 <img
                   src={imgUrls?.at(0) || "/logoo.jpeg"}
                   alt=""
-                  className="inset-0 h-20 w-20 rounded-full object-cover sm:h-20 sm:w-20"
+                  className="inset-0 h-20 w-20 rounded-full object-cover sm:h-28 sm:w-28"
                 />
                 <div className="flex w-full flex-col gap-3">
                   <div>
@@ -73,7 +100,7 @@ const SingleMenueItems = ({ data = {} }) => {
               </div>
             </Link>
             <div className="my-2 flex items-center justify-center">
-              <span className="inline-block w-full text-center text-sm font-semibold text-[#82AE04] sm:text-xl">
+              {/* <span className="inline-block w-full text-center text-sm font-semibold text-[#82AE04] sm:text-xl">
                 {discountValue > 0 && (
                   <span className="inline-block w-full p-1 text-xs sm:text-sm dark:bg-gray-800">
                     <span className="mr-1 text-gray-700 line-through dark:text-gray-100">
@@ -85,7 +112,7 @@ const SingleMenueItems = ({ data = {} }) => {
                     <span>({disCountName})</span>
                   </span>
                 )}
-              </span>
+              </span> */}
             </div>
             <div className="price-calories mr-2 flex items-center justify-between max-[380px]:mt-2">
               <div className="absolute -top-2 right-2">
@@ -94,14 +121,27 @@ const SingleMenueItems = ({ data = {} }) => {
                   averageRating={averageRatings.toFixed(1)}
                 />
               </div>
-              <div>
+              {/* <div>
                 <FavoritesBtn />
-              </div>
+              </div> */}
               {is_available ? (
-                <div className="flex w-full items-center justify-between gap-2 sm:gap-4">
-                  <span className="text-xl font-bold text-slate-900 dark:text-white">
+                <div className="flex w-full items-center justify-between gap-1 sm:gap-4">
+                  <span className="flex flex-wrap items-baseline font-bold text-slate-900 dark:text-white">
                     {" "}
-                    AED {(+price - itemPrice).toFixed(2)}
+                    <span>AED {(+price - itemPrice).toFixed(2)} </span>
+                    <span className="text-sm font-semibold text-[#82AE04] sm:text-xl">
+                      {discountValue > 0 && (
+                        <span className="inline-block w-full p-1 text-xs sm:text-sm">
+                          <span className="mr-1 text-gray-700 line-through dark:text-gray-100">
+                            AED {price}
+                          </span>{" "}
+                          <span className="mr-1 text-red-600 dark:text-red-400">
+                            {discountValue}% OFF
+                          </span>
+                          {/* <span>({disCountName})</span> */}
+                        </span>
+                      )}
+                    </span>
                   </span>
                   <MenueActionBtns
                     itemCurrentQuantity={itemCurrentQuantity}
@@ -122,7 +162,7 @@ const SingleMenueItems = ({ data = {} }) => {
                 <img
                   src={imgUrls?.at(0) || "/logoo.jpeg"}
                   alt=""
-                  className="inset-0 h-20 w-20 rounded-full object-cover sm:h-20 sm:w-20"
+                  className="inset-0 h-20 w-20 rounded-full object-cover sm:h-28 sm:w-28"
                 />
                 <div className="flex w-full flex-col gap-3">
                   <div>
@@ -140,7 +180,7 @@ const SingleMenueItems = ({ data = {} }) => {
                   </div>
                 </div>
               </div>
-              <div className="my-2 flex items-center justify-center">
+              {/* <div className="my-2 flex items-center justify-center">
                 <span className="inline-block w-full text-center text-sm font-semibold text-[#82AE04] sm:text-xl">
                   {discountValue > 0 && (
                     <span className="inline-block w-full p-1 text-xs sm:text-sm dark:bg-gray-800">
@@ -154,25 +194,38 @@ const SingleMenueItems = ({ data = {} }) => {
                     </span>
                   )}
                 </span>
-              </div>
-              <div className="mr-2 flex items-center justify-between max-[380px]:mt-2">
+              </div> */}
+              <div className="mr-2 mt-2 flex items-center justify-between max-[380px]:mt-2">
                 <div className="absolute -top-2 right-2">
                   <ItemRating
                     reviewCounts={totalReviews}
                     averageRating={averageRatings.toFixed(1)}
                   />
                 </div>
-                <div>
+                {/* <div>
                   <FavoritesBtn />
-                </div>
+                </div> */}
                 {is_available ? (
                   <div className="flex w-full items-center justify-between gap-2 sm:gap-4">
-                    <span className="text-xl font-bold text-slate-900 dark:text-white">
+                    <span className="flex flex-wrap items-baseline font-bold text-slate-900 dark:text-white">
                       {" "}
-                      AED {(+price - itemPrice).toFixed(2)}
+                      <span>AED {(+price - itemPrice).toFixed(2)} </span>
+                      <span className="text-sm font-semibold text-[#82AE04] sm:text-xl">
+                        {discountValue > 0 && (
+                          <span className="inline-block w-full p-1 text-xs sm:text-sm">
+                            <span className="mr-1 text-gray-700 line-through dark:text-gray-100">
+                              AED {price}
+                            </span>{" "}
+                            <span className="mr-1 text-red-600 dark:text-red-400">
+                              {discountValue}% OFF
+                            </span>
+                            {/* <span>({disCountName})</span> */}
+                          </span>
+                        )}
+                      </span>
                     </span>
-                    <AddToCartBtn type="primary" />
-                    {/* <CustomBtn icon={HiPlus} /> */}
+                    {/* <AddToCartBtn type="primary" /> */}
+                    <CustomBtn icon={HiPlus} />
                   </div>
                 ) : (
                   <p className="text-gray-900">Out of stock</p>
@@ -181,6 +234,9 @@ const SingleMenueItems = ({ data = {} }) => {
             </div>
           </Link>
         )}
+      </div>
+      <div>
+        <FavoritesBtn onClick={handleAddToFavorites} isFavorite={isFavorite} />
       </div>
     </div>
   );

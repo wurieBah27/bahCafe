@@ -60,8 +60,6 @@ const ItemDetails = () => {
     if (selectedOptions) {
       const testt = selectedOptions?.filter((option) => option !== false);
 
-      const seein = testt?.filter((option) => option !== false);
-      console.log(testt);
       optionPrices = testt?.map((option) => {
         const [_, itemPrice] = option?.split(" = ");
         return parseFloat(itemPrice);
@@ -79,6 +77,8 @@ const ItemDetails = () => {
       quantity: 1,
       unitPrice: +price - itemPrice,
       price: totalPrice,
+      discount: discountValue,
+      discountName: discountPercent?.disCountName,
       totalPrice: +totalPrice,
       specialNote: orderNote,
       options: data, // Add selected options to the item
@@ -139,7 +139,7 @@ const ItemDetails = () => {
                     </span>
                     {discountValue > 0 && (
                       <span className="text-sm">
-                        <span className="ml-3 mr-1 text-gray-700 line-through">
+                        <span className="ml-3 mr-1 text-gray-700 line-through dark:text-gray-200">
                           AED {price}
                         </span>{" "}
                         <span className="text-red-600">

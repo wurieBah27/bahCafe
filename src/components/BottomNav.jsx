@@ -52,7 +52,8 @@ const BottomNav = () => {
           <div className="tooltip-arrow" data-popper-arrow></div>
         </div>
         <div className="flex items-center justify-center">
-          <button
+          <Link
+            to={"/favorites-items"}
             data-tooltip-target="tooltip-new"
             type="button"
             className="group inline-flex h-10 w-10 items-center justify-center rounded-full font-medium focus:outline-none focus:ring-4 focus:ring-blue-300"
@@ -60,7 +61,7 @@ const BottomNav = () => {
             <HiHeart className="mb-1 size-7 text-gray-50 transition-all hover:scale-125 group-hover:text-gray-300" />
 
             <span className="sr-only">New item</span>
-          </button>
+          </Link>
         </div>
         <div
           id="tooltip-new"
