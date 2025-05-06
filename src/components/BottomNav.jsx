@@ -59,11 +59,7 @@ const BottomNav = () => {
             className="group inline-flex h-10 w-10 items-center justify-center rounded-full font-medium focus:outline-none focus:ring-4 focus:ring-blue-300"
           >
             <HiHeart className="mb-1 size-7 text-gray-50 transition-all hover:scale-125 group-hover:text-gray-300" />
-            {totalItems > 0 && (
-              <span className="absolute right-0 top-[-30%] flex h-8 min-w-8 max-w-max items-center justify-center rounded-full bg-gray-50 p-2 text-xl text-gray-900">
-                {totalItems}
-              </span>
-            )}
+
             <span className="sr-only">New item</span>
           </Link>
         </div>
