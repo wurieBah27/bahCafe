@@ -38,13 +38,13 @@ const Favorites = () => {
                     <img
                       src="/noProductFound.avif"
                       alt="no product was foound image."
-                      className="w-40"
+                      className="w-40 sm:w-52"
                     />
                     <div>
-                      <h1 className="text-lg font-semibold text-gray-500 dark:text-gray-400">
+                      <h1 className="mb-5 text-center text-lg font-semibold text-gray-500 sm:text-2xl dark:text-gray-400">
                         Add your favorite items to the list
                       </h1>
-                      <p>
+                      <p className="text-center text-sm text-gray-400 sm:text-xl dark:text-gray-300">
                         Start adding items you love to your favorites list by
                         clicking the heart icon.
                       </p>
