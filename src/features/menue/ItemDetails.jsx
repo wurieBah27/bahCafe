@@ -15,6 +15,7 @@ import { addItemToCart, getCurrentItemQuantityByID } from "../cart/cartSlice";
 import { useForm } from "react-hook-form";
 import usegetItemReview from "../reviews/usegetItemReview";
 import { Label, Rating, Textarea } from "flowbite-react";
+import FavoritesBtn from "../../components/FavoritesBtn";
 
 const ItemDetails = () => {
   const location = useLocation();
@@ -78,7 +79,7 @@ const ItemDetails = () => {
       unitPrice: +price - itemPrice,
       price: totalPrice,
       discount: discountValue,
-      discountName: discountPercent?.disCountName,
+      discountName: discountPercent?.disCountName || "",
       totalPrice: +totalPrice,
       specialNote: orderNote,
       options: data, // Add selected options to the item
@@ -123,9 +124,11 @@ const ItemDetails = () => {
                     <span className="text-primary flex flex-wrap gap-x-1 text-2xl font-bold dark:text-gray-100">
                       {name}
                     </span>
-                    <button type="button">
-                      <HiOutlineHeart className="h-8 w-8" />
-                    </button>
+
+                    <FavoritesBtn
+                      id={itemID}
+                      data={{ ...singleMenueItem, id: itemID }}
+                    />
                   </div>
                   <div className="text-primary dark:text-gray-300">
                     {descriptions}
@@ -212,7 +215,7 @@ const ItemDetails = () => {
                         </div>
                       </div>
 
-                      <div className="max-w-md">
+                      <div className="">
                         <div className="mb-2 block">
                           <Label
                             htmlFor="comment"
@@ -223,7 +226,9 @@ const ItemDetails = () => {
                         </div>
                         <Textarea
                           id="comment"
-                          placeholder="Leave a comment..."
+                          value={orderNote}
+                          onChange={(e) => setOrderNote(e.target.value)}
+                          placeholder="Write your instructions..."
                           rows={4}
                         />
                       </div>
@@ -231,27 +236,9 @@ const ItemDetails = () => {
                   </div>
                 </div>
               </div>
-              <div className="fixed bottom-0 left-1/2 z-[1100] mx-auto w-full max-w-5xl -translate-x-1/2 items-center justify-center bg-gray-50 px-5 py-4 text-sm dark:bg-gray-600">
+              <div className="fixed bottom-0 left-1/2 z-[1100] mx-auto w-full max-w-5xl -translate-x-1/2 items-center justify-center bg-gray-50 px-5 py-6 text-sm dark:bg-gray-600">
                 {is_available ? (
                   <div className="flex h-full flex-col gap-3 sm:gap-4">
-                    <div className="flex items-center justify-between">
-                      <span className="flex items-center gap-1 text-xs text-gray-700 dark:text-gray-200">
-                        <HiOutlineChatBubbleLeft /> You have any Message?
-                      </span>
-                      <span
-                        className="cursor-pointer p-1 underline dark:text-gray-200"
-                        onClick={() => setOpenModal((modal) => !modal)}
-                      >
-                        Add Message
-                      </span>
-
-                      <AddNotes
-                        setOpenModal={setOpenModal}
-                        openModal={openModal}
-                        notes={orderNote}
-                        setOrderNote={setOrderNote}
-                      />
-                    </div>
                     <div className="flex items-center">
                       {itemCurrentQuantity > 0 && (
                         <MenueActionBtns
@@ -260,7 +247,7 @@ const ItemDetails = () => {
                         />
                       )}
                       {itemCurrentQuantity === 0 && (
-                        <div className="w-full">
+                        <div className="w-full sm:w-[50%]">
                           <AddToCartBtn
                             btnType={"submit"}
                             type={"secondary"}

@@ -20,12 +20,12 @@ const Navbar = () => {
             className="relative flex flex-wrap items-center space-x-3 rtl:space-x-reverse"
           >
             <img
-              src="/edama-icon.jpg"
+              src="/flowers.jpeg"
               alt=""
               className="h-8 w-8 rounded-full object-cover"
             />
             <span className="self-center whitespace-nowrap text-sm font-semibold uppercase text-gray-300 sm:text-2xl dark:text-white">
-              bah CAFE
+              Mt
             </span>
           </Link>
         </div>

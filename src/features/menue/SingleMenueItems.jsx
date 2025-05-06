@@ -1,13 +1,11 @@
 import { Link } from "react-router-dom";
 import MenueActionBtns, { CustomBtn } from "./MenueActionBtns";
-import AddToCartBtn from "../../components/AddToCartBtn";
 import ItemRating from "../../components/ItemRating";
 import FavoritesBtn from "../../components/FavoritesBtn";
 import { useSelector } from "react-redux";
 import { getCurrentItemQuantityByID } from "../cart/cartSlice";
 import { useEffect, useState } from "react";
 import { getItemReviews } from "../../apis/itemsReviews";
-import { IoBagAdd } from "react-icons/io5";
 import { HiPlus } from "react-icons/hi2";
 import useAddToFavorites from "./menueHooks/useAddToFavorites";
 import useGetCurrentUser from "../customers/customersHooks/useGetCurrentUser";
@@ -26,28 +24,10 @@ const SingleMenueItems = ({ data = {} }) => {
   } = data;
   const [singleItemReviews, setSingleItemReviews] = useState([]);
   const itemCurrentQuantity = useSelector(getCurrentItemQuantityByID(id));
-  const { addItemToFavorite, isAddingToFavorites } = useAddToFavorites();
-  const { deleteFromFavorites, isDeletingFavorite } = useRemoveFromFavorites();
-  const { favorites } = getFavorites();
 
-  const isFavorite = favorites?.some((item) => item?.id === id);
-
-  console.log(isFavorite);
-  console.log(favorites);
-
-  const { uid } = useGetCurrentUser();
   const item = itemCurrentQuantity > 0;
 
   /* add to favorites functions */
-
-  const handleAddToFavorites = () => {
-    if (!uid) return;
-    if (isFavorite) {
-      deleteFromFavorites({ uid: uid, itemId: id });
-    } else {
-      addItemToFavorite({ uid: uid, item: data });
-    }
-  };
 
   const { discount: discountValue = 0, disCountName } = discountPercent || {};
   const itemPrice = (discountValue / 100) * +price;
@@ -68,9 +48,7 @@ const SingleMenueItems = ({ data = {} }) => {
 
   return (
     <div className="relative mb-8">
-      <div
-        className={`${isAddingToFavorites || isDeletingFavorite ? "opacity-50" : ""}`}
-      >
+      <div>
         {item ? (
           <div
             className={`${is_available ? "boxshadow bg-[#e1d5b9] dark:bg-gray-600" : "bg-gray-300 opacity-50"} relative flex -hidden w-full flex-col items-stretch justify-start rounded-lg p-3 shadow-[0_4px_6px_-1px_rgba(0,_0,_0,_0.1),_0_2px_4px_-2px_rgba(0,_0,_0,_0.05)] transition-all hover:translate-y-[4px] active:translate-y-[4px]`}
@@ -236,7 +214,7 @@ const SingleMenueItems = ({ data = {} }) => {
         )}
       </div>
       <div>
-        <FavoritesBtn onClick={handleAddToFavorites} isFavorite={isFavorite} />
+        <FavoritesBtn id={id} data={data} />
       </div>
     </div>
   );
