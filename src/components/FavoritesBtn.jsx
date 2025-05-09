@@ -14,9 +14,6 @@ const FavoritesBtn = ({ id = "", data = {} }) => {
 
   const isFavorite = favorites?.some((item) => item?.id === id);
 
-  console.log(isFavorite);
-  console.log(favorites);
-
   /* add to favorites functions */
 
   const handleAddToFavorites = () => {

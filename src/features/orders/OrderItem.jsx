@@ -1,5 +1,4 @@
 import { Button } from "flowbite-react";
-import { HiOutlineHeart } from "react-icons/hi";
 import { HiMiniArrowPath, HiMiniEye, HiStar } from "react-icons/hi2";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -10,11 +9,10 @@ const OrderItem = ({ data = {}, status }) => {
   const dispatch = useDispatch();
   const { id, name, unitPrice, totalPrice, image, quantity, options } = data;
 
-  console.log(data);
   return (
     <div>
       <div
-        className="relative rounded-md border bg-gray-50 px-4 pb-2 pt-4 text-gray-700 max-[380px]:px-1 sm:px-6 lg:px-8 dark:bg-gray-700"
+        className="relative rounded-md border bg-gray-50 px-4 pb-2 pt-4 text-gray-700 dark:bg-gray-700 max-[380px]:px-1 sm:px-6 lg:px-8"
         aria-modal="true"
         role="dialog"
         tabIndex="-1"

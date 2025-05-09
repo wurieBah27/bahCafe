@@ -13,7 +13,6 @@ export const getAllFavoritesItems = async ({ uid }) => {
     const q = collection(db, "Customers", uid, "favorites");
 
     const querySnapshot = await getDocs(q);
-    console.log(uid);
     const favoritesItems = [];
 
     querySnapshot.forEach((doc) => {

@@ -1,10 +1,17 @@
+import { useState } from "react";
 import { Avatar, Button, Dropdown } from "flowbite-react";
 import { Link, useNavigate } from "react-router-dom";
+
 import DarkModeToggle from "./DarkModeToggle";
 
 import { getUser } from "../features/customers/customersHooks/useGetCurrentUser";
 import { LogOutUser } from "../features/customers/customersHooks/LogInOutUser";
+import ConfirmDeleteUserAccount from "./ConfirmDeleteUserAccount";
 const Navbar = () => {
+  const [openModal, setOpenModal] = useState(false);
+
+  const handleOpenModal = () => setOpenModal(!openModal);
+
   const { data = {}, uid } = getUser();
   const { signOut } = LogOutUser();
   const navigate = useNavigate();
@@ -24,8 +31,8 @@ const Navbar = () => {
               alt=""
               className="h-8 w-8 rounded-full object-cover"
             />
-            <span className="self-center whitespace-nowrap text-sm font-semibold uppercase text-gray-300 sm:text-2xl dark:text-white">
-              Mt
+            <span className="self-center whitespace-nowrap text-sm font-semibold uppercase text-gray-300 dark:text-white sm:text-2xl">
+              Cafe
             </span>
           </Link>
         </div>
@@ -67,8 +74,12 @@ const Navbar = () => {
               <Link to="/user">
                 <Dropdown.Item>Account</Dropdown.Item>
               </Link>
-              <Dropdown.Item>Edit Account</Dropdown.Item>
-              <Dropdown.Item>Delete Account</Dropdown.Item>
+              <Link to="/user/details">
+                <Dropdown.Item>Edit Account</Dropdown.Item>
+              </Link>
+              <Dropdown.Item onClick={handleOpenModal}>
+                Delete Account
+              </Dropdown.Item>
               <Dropdown.Divider />
               <Dropdown.Item onClick={() => signOut()}>Sign out</Dropdown.Item>
             </Dropdown>
@@ -81,6 +92,10 @@ const Navbar = () => {
           <DarkModeToggle />
         </div>
       </div>
+      <ConfirmDeleteUserAccount
+        openModal={openModal}
+        handleOpenModal={handleOpenModal}
+      />
     </nav>
   );
 };

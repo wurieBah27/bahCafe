@@ -1,5 +1,6 @@
 import {
   createUserWithEmailAndPassword,
+  deleteUser,
   GoogleAuthProvider,
   onAuthStateChanged,
   sendEmailVerification,
@@ -10,7 +11,14 @@ import {
 
 import { auth, db } from "./firebaseJS/firebaseConfig";
 import uploadFile from "./uploadFile";
-import { doc, getDoc, serverTimestamp, setDoc } from "firebase/firestore";
+import {
+  deleteDoc,
+  doc,
+  getDoc,
+  serverTimestamp,
+  setDoc,
+  updateDoc,
+} from "firebase/firestore";
 
 const createNewUser = async (userObj = {}) => {
   try {
@@ -121,7 +129,11 @@ export const signInUser = async ({ email, password }) => {
 
 export const updateUserData = async ({ userObj, id }) => {
   try {
-    await setDoc(doc(db, "Customers", id), userObj);
+    console.log(userObj, id);
+    if (!userObj || !id) {
+      throw new Error("User object and ID are required.");
+    }
+    await updateDoc(doc(db, "Customers", id), userObj);
     return null;
   } catch (error) {
     console.log(error);
@@ -211,9 +223,7 @@ export const loginInWithGoogle = async () => {
       const user = result.user;
 
       const isNewUser = result?._tokenResponse?.isNewUser;
-      console.log(user);
-      console.log(result);
-      console.log(isNewUser);
+
       if (!isNewUser) {
         return user;
       }
@@ -252,5 +262,36 @@ export const loginInWithGoogle = async () => {
 
     return { errorCode, errorMessage, email, credential };
     // ...
+  }
+};
+
+export const deleteUserAccount = async () => {
+  try {
+    const user = auth.currentUser;
+
+    if (user) {
+      const uid = user.uid;
+      const docRef = doc(db, "Customers", uid);
+      await deleteDoc(docRef);
+
+      deleteUser(user)
+        .then(() => {
+          // User deleted.
+
+          console.log("User account deleted successfully.");
+        })
+        .catch((error) => {
+          // An error ocurred
+          // ...
+          throw new Error("Error deleting user account:", error);
+        });
+
+      return null;
+    } else {
+      console.log("No user is currently signed in.");
+    }
+  } catch (error) {
+    console.error("Error deleting user account:", error);
+    throw new Error("Error deleting user account:", error);
   }
 };

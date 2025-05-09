@@ -16,6 +16,10 @@ const ProtectedRoutes = ({ children }) => {
       // Redirect to the login page if the user is not authenticated
       navigate("/login");
     }
+    if (uid && !isAuthenticated && !isLoading) {
+      // If the user is authenticated but email is not verified, redirect to the email verification page
+      navigate("/email-verification");
+    }
   }, [isAuthenticated, navigate, isLoading]);
   if (isLoading) return <Spinner />; // Optionally, you can show a loading spinner or placeholder while checking authentication
 

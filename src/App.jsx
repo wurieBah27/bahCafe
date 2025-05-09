@@ -19,6 +19,7 @@ import CheckoutPage from "./pages/CheckoutPage";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import ProductsPage from "./pages/ProductsPage";
 import Favorites from "./pages/Favorites";
+import EmailVericationPAge from "./components/EmailVericationPAge";
 
 const router = createBrowserRouter([
   {
@@ -89,12 +90,12 @@ const router = createBrowserRouter([
         element: <SingleItemDetails />,
       },
       {
+        path: "/email-verification",
+        element: <EmailVericationPAge />,
+      },
+      {
         path: "/review/:itemID",
-        element: (
-          <ProtectedRoutes>
-            <ReviewPage />
-          </ProtectedRoutes>
-        ),
+        element: <ReviewPage />,
       },
       {
         path: "/checkout",

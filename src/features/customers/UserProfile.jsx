@@ -1,5 +1,4 @@
 import { HiCog, HiMiniHome, HiOutlineChevronRight } from "react-icons/hi2";
-import { CiViewList } from "react-icons/ci";
 import { FaCartPlus, FaHeart } from "react-icons/fa";
 import { Avatar, Button } from "flowbite-react";
 import { RiLogoutCircleLine } from "react-icons/ri";
@@ -11,11 +10,12 @@ import { MdFastfood } from "react-icons/md";
 
 const UserProfile = () => {
   const { data } = getUser();
-
   const { profileUrl, createdAt, name, email } = data;
+
   const date = createdAt?.toDate();
   const formattedDate = date ? format(date, "PPpp") : "";
   const { signOut } = LogOutUser();
+  const userFirstName = name.split(" ")[0];
 
   return (
     <div>
@@ -34,8 +34,8 @@ const UserProfile = () => {
                   ) : (
                     <Avatar />
                   )}
-                  <h5 className="text-xl font-medium text-gray-900 dark:text-white">
-                    {name || "No name was provided"}
+                  <h5 className="text-xl font-medium text-gray-900 dark:text-white max-[370px]:text-sm">
+                    {userFirstName || "No name was provided"}
                   </h5>
                 </div>
                 <HiOutlineChevronRight className="size-8 font-bold dark:text-gray-100" />
@@ -54,17 +54,18 @@ const UserProfile = () => {
               <HiOutlineChevronRight className="size-8 font-bold dark:text-gray-100" />
             </div>
           </Link>
+          <Link to="/favorites-items">
+            <div className="mb-2 flex w-full items-center justify-between bg-gray-100 px-4 dark:bg-gray-600">
+              <div className="flex items-center gap-4 py-2">
+                <FaHeart className="size-5 font-bold text-gray-500 dark:text-gray-100" />
 
-          <div className="mb-2 flex w-full items-center justify-between bg-gray-100 px-4 dark:bg-gray-600">
-            <div className="flex items-center gap-4 py-2">
-              <FaHeart className="size-5 font-bold text-gray-500 dark:text-gray-100" />
-
-              <h5 className="text-xl font-medium text-gray-900 dark:text-white">
-                favorites
-              </h5>
+                <h5 className="text-xl font-medium text-gray-900 dark:text-white">
+                  favorites
+                </h5>
+              </div>
+              <HiOutlineChevronRight className="size-8 font-bold dark:text-gray-100" />
             </div>
-            <HiOutlineChevronRight className="size-8 font-bold dark:text-gray-100" />
-          </div>
+          </Link>
           <Link to="/cart">
             <div className="mb-2 flex w-full items-center justify-between bg-gray-100 px-4 dark:bg-gray-600">
               <div className="flex items-center gap-4 py-2">

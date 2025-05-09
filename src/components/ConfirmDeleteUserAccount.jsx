@@ -1,12 +1,12 @@
 import { Button, Modal, ModalBody, ModalHeader } from "flowbite-react";
-import { HiOutlineExclamationCircle } from "react-icons/hi";
-import useDeleteReview from "../features/reviews/useDeleteReview";
+import useDeleteUser from "../features/customers/customersHooks/useDeleteUser";
+import { HiOutlineExclamationCircle } from "react-icons/hi2";
 
-const ConfirmDeleteModal = ({ openModal, handleOpenModal, reviewId }) => {
-  const { deleteReview, isDeletingReview } = useDeleteReview();
+const ConfirmDeleteUserAccount = ({ openModal, handleOpenModal }) => {
+  const { deleteUser, isDeletingUserAccount } = useDeleteUser();
 
   const handleDelete = () => {
-    deleteReview({ id: reviewId });
+    deleteUser();
     handleOpenModal();
   };
   return (
@@ -17,20 +17,21 @@ const ConfirmDeleteModal = ({ openModal, handleOpenModal, reviewId }) => {
           <div className="text-center">
             <HiOutlineExclamationCircle className="mx-auto mb-4 h-14 w-14 text-gray-400 dark:text-gray-200" />
             <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
-              Are you sure you want to delete this your review?
+              We are sad to see you go 🥲, Are you sure you want to delete your
+              Account?
             </h3>
             <div className="flex justify-center gap-4 max-[350px]:flex-col">
               <Button
                 color="failure"
                 onClick={handleDelete}
-                disabled={isDeletingReview}
+                disabled={isDeletingUserAccount}
               >
                 {"Yes, I'm sure"}
               </Button>
               <Button
                 color="gray"
                 onClick={handleOpenModal}
-                disabled={isDeletingReview}
+                disabled={isDeletingUserAccount}
               >
                 No, cancel
               </Button>
@@ -42,4 +43,4 @@ const ConfirmDeleteModal = ({ openModal, handleOpenModal, reviewId }) => {
   );
 };
 
-export default ConfirmDeleteModal;
+export default ConfirmDeleteUserAccount;
