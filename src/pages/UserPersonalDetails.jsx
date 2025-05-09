@@ -89,7 +89,7 @@ const UserPersonalDetails = () => {
               {...register("username", {
                 required: "Name is required",
               })}
-              value={name} // Ensure value is always defined
+              defaultValue={name} // Ensure value is always defined
               color=""
             />
           </div>
@@ -116,7 +116,7 @@ const UserPersonalDetails = () => {
                   message: "Invalid phone number format",
                 },
               })}
-              value={phone} // Ensure value is always defined
+              defaultValue={phone} // Ensure value is always defined
               color=""
             />
           </div>
