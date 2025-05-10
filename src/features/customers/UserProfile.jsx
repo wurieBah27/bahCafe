@@ -15,7 +15,7 @@ const UserProfile = () => {
   const date = createdAt?.toDate();
   const formattedDate = date ? format(date, "PPpp") : "";
   const { signOut } = LogOutUser();
-  const userFirstName = name.split(" ")[0];
+  const userFirstName = name?.split(" ")[0];
 
   return (
     <div>
@@ -35,7 +35,7 @@ const UserProfile = () => {
                     <Avatar />
                   )}
                   <h5 className="text-xl font-medium text-gray-900 dark:text-white max-[370px]:text-sm">
-                    {userFirstName || "No name was provided"}
+                    {userFirstName || "No name"}
                   </h5>
                 </div>
                 <HiOutlineChevronRight className="size-8 font-bold dark:text-gray-100" />

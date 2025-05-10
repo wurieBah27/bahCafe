@@ -55,3 +55,31 @@ export const getSingleMenueItem = async ({ id }) => {
     throw new Error(error);
   }
 };
+
+export const getFeaturedProducts = async () => {
+  try {
+    let data = [];
+    const menueRef = collection(db, "Products");
+
+    let q = query(
+      menueRef,
+      where("bannerStatus", "==", "featured"),
+      orderBy("createdAt", "desc"),
+    );
+
+    const querySnapshot = await getDocs(q);
+
+    querySnapshot.forEach((doc) => {
+      const docData = doc.data();
+      if (docData.createdAt instanceof Timestamp) {
+        docData.createdAt = docData.createdAt.toDate();
+      }
+
+      data.push({ id: doc.id, ...docData });
+    });
+    return data;
+  } catch (error) {
+    console.log(error);
+    throw new Error(error);
+  }
+};

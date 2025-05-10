@@ -8,6 +8,7 @@ import { useEffect, useRef } from "react";
 import Filter from "../components/Filter";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { HiChevronLeft } from "react-icons/hi2";
+import BackButton from "../components/BackButton";
 
 const filterOptions = [
   { value: "price-asc", label: "Price: Low to High" },
@@ -53,12 +54,7 @@ const ProductsPage = () => {
   return (
     <div className="z-[1001] px-0 py-2 sm:px-4 sm:py-8">
       <div className="my-3 flex items-center justify-between px-4 sm:my-6">
-        <span
-          onClick={() => navigate("/")}
-          className="mb-1 inline-block cursor-pointer dark:bg-gray-600"
-        >
-          <HiChevronLeft className="size-8 font-bold text-gray-800 sm:size-10 dark:text-gray-100" />
-        </span>{" "}
+        <BackButton />
         <div className="flex items-center gap-2">
           <Filter
             filterField="sortBy"
@@ -97,6 +93,11 @@ const ProductsPage = () => {
               alt="no product was foound image."
               className="w-40"
             />{" "}
+            <p className="p-4 text-center text-gray-600 dark:text-gray-300">
+              Sorry, we currently don't offer the product you're looking for.
+              Please try searching for something else or explore our available
+              products.
+            </p>
           </div>
         )}
       </div>

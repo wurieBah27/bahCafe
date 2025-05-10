@@ -7,10 +7,6 @@ import { getCurrentItemQuantityByID } from "../cart/cartSlice";
 import { useEffect, useState } from "react";
 import { getItemReviews } from "../../apis/itemsReviews";
 import { HiPlus } from "react-icons/hi2";
-import useAddToFavorites from "./menueHooks/useAddToFavorites";
-import useGetCurrentUser from "../customers/customersHooks/useGetCurrentUser";
-import getFavorites from "./menueHooks/getFavorites";
-import useRemoveFromFavorites from "./menueHooks/useRemoveFromFavorites";
 
 const SingleMenueItems = ({ data = {} }) => {
   const {
@@ -64,12 +60,12 @@ const SingleMenueItems = ({ data = {} }) => {
                   <div>
                     <div className="flex flex-col gap-4 max-[380px]:gap-1">
                       <div className="title flex items-center gap-6 max-[380px]:flex-col max-[380px]:items-start max-[380px]:justify-start max-[380px]:gap-2">
-                        <p className="title_name font-bold capitalize text-[#14152d] max-[380px]:text-xs dark:text-gray-200">
+                        <p className="title_name font-bold capitalize text-[#14152d] dark:text-gray-200 max-[380px]:text-xs">
                           {name}
                         </p>
                       </div>
 
-                      <div className="mt-2 line-clamp-2 max-h-11 text-xs text-gray-700 sm:text-base dark:text-gray-400">
+                      <div className="mt-2 line-clamp-2 max-h-11 text-xs text-gray-700 dark:text-gray-400 sm:text-base">
                         {descriptions}
                       </div>
                     </div>
@@ -77,21 +73,7 @@ const SingleMenueItems = ({ data = {} }) => {
                 </div>
               </div>
             </Link>
-            <div className="my-2 flex items-center justify-center">
-              {/* <span className="inline-block w-full text-center text-sm font-semibold text-[#82AE04] sm:text-xl">
-                {discountValue > 0 && (
-                  <span className="inline-block w-full p-1 text-xs sm:text-sm dark:bg-gray-800">
-                    <span className="mr-1 text-gray-700 line-through dark:text-gray-100">
-                      AED {price}
-                    </span>{" "}
-                    <span className="mr-1 text-red-600 dark:text-red-400">
-                      {discountValue}% OFF
-                    </span>
-                    <span>({disCountName})</span>
-                  </span>
-                )}
-              </span> */}
-            </div>
+            <div className="my-2 flex items-center justify-center"></div>
             <div className="price-calories mr-2 flex items-center justify-between max-[380px]:mt-2">
               <div className="absolute -top-2 right-2">
                 <ItemRating
@@ -99,9 +81,7 @@ const SingleMenueItems = ({ data = {} }) => {
                   averageRating={averageRatings.toFixed(1)}
                 />
               </div>
-              {/* <div>
-                <FavoritesBtn />
-              </div> */}
+
               {is_available ? (
                 <div className="flex w-full items-center justify-between gap-1 sm:gap-4">
                   <span className="flex flex-wrap items-baseline font-bold text-slate-900 dark:text-white">
@@ -146,12 +126,12 @@ const SingleMenueItems = ({ data = {} }) => {
                   <div>
                     <div className="flex flex-col max-[380px]:gap-1">
                       <div className="title flex flex-col gap-2 max-[380px]:flex-col max-[380px]:items-start max-[380px]:justify-start max-[380px]:gap-2">
-                        <p className="title_name font-bold capitalize text-[#14152d] max-[380px]:text-xs dark:text-gray-200">
+                        <p className="title_name font-bold capitalize text-[#14152d] dark:text-gray-200 max-[380px]:text-xs">
                           {name}
                         </p>
                       </div>
 
-                      <div className="mt-2 line-clamp-2 max-h-11 text-xs text-gray-700 sm:text-base dark:text-gray-400">
+                      <div className="mt-2 line-clamp-2 max-h-11 text-xs text-gray-700 dark:text-gray-400 sm:text-base">
                         {descriptions}
                       </div>
                     </div>

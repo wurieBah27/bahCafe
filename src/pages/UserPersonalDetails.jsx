@@ -5,11 +5,16 @@ import BackButton from "../components/BackButton";
 import useUpdateUser from "../features/customers/customersHooks/useUpdateUser";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
+import ConfirmModal from "../components/ConfirmModal";
 
 const UserPersonalDetails = () => {
   const { data = {}, uid } = getUser();
   const [birthday, setBirthday] = useState(null); // Ensure birthday is initialized as null
+  const [openFullImageModal, setOpenFullImageModal] = useState(false);
+  const [showCalender, setShowCalender] = useState(false);
 
+  const handleOpenModal = () => setOpenFullImageModal(!openFullImageModal);
+  const handleShowCalender = () => setShowCalender(!showCalender);
   const { updateUserInformation } = useUpdateUser();
 
   const { profileUrl, createdAt, name = "", phone = "", dateOfBirth } = data; // Provide default values for name and phone
@@ -57,7 +62,7 @@ const UserPersonalDetails = () => {
         >
           <div className="relative flex items-center justify-between px-4 py-2 shadow-md dark:text-gray-100">
             <span>Profile Picture</span>
-            <div>
+            <div onClick={handleOpenModal}>
               {profileUrl && (
                 <img
                   src={profileUrl}
@@ -70,6 +75,16 @@ const UserPersonalDetails = () => {
             <span className="absolute -top-2 right-4 text-blue-600">
               Change
             </span>
+            <ConfirmModal
+              openModal={openFullImageModal}
+              handleOpenModal={handleOpenModal}
+            >
+              <div className="text-center">
+                <div>
+                  <img src={profileUrl} alt="" className="h-full w-full" />
+                </div>
+              </div>
+            </ConfirmModal>
           </div>
           <div className="px-4 py-2 shadow-md">
             <div className="mb-1 block dark:text-gray-100">
@@ -131,9 +146,14 @@ const UserPersonalDetails = () => {
               value={birthday ? format(birthday, "PPPP") : ""} // Format only if valid
               color=""
             />
-
+            <span
+              onClick={handleShowCalender}
+              className="inline-block py-2 text-blue-600 dark:text-blue-500"
+            >
+              {!showCalender ? "Edit" : "Hide"}
+            </span>
             <Datepicker
-              className=""
+              className={showCalender ? "" : "hidden"}
               autoHide={false}
               inline
               maxDate={today}
