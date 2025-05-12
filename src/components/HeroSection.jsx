@@ -6,11 +6,12 @@ import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import "swiper/css/virtual";
 import SingleHeroItem from "./SingleHeroItem";
 import useGetFeaturedProducts from "../features/menue/menueHooks/useGetFeaturedProducts";
+import { Spinner } from "flowbite-react";
 
 const HeroSection = () => {
   const { featuredItems, isFecthingItems } = useGetFeaturedProducts();
 
-  console.log(featuredItems);
+  if (isFecthingItems) return <Spinner />;
   return (
     <Swiper
       spaceBetween={30}

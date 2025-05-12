@@ -8,7 +8,6 @@ const SinglrCartItem = ({ data = {} }) => {
   const { id, name, unitPrice, totalPrice, image, quantity, options } = data;
 
   const dispatch = useDispatch();
-  console.log(options);
   const haandleDeleteItem = () => {
     dispatch(deleteItem(id));
   };
@@ -16,14 +15,14 @@ const SinglrCartItem = ({ data = {} }) => {
   return (
     <div>
       <div
-        className="relative mb-4 rounded-md border bg-gray-50 px-4 pb-2 pt-4 text-gray-700 shadow-lg max-[380px]:px-1 sm:px-6 lg:px-8 dark:bg-gray-600 dark:text-gray-100"
+        className="relative mb-4 rounded-md border bg-gray-50 px-4 pb-2 pt-4 text-gray-700 shadow-lg dark:bg-gray-600 dark:text-gray-100 max-[380px]:px-1 sm:px-6 lg:px-8"
         aria-modal="true"
         role="dialog"
         tabIndex="-1"
       >
         <button
           data-qa="cart-remove_item"
-          className="sc-31fee6c0-17 emumkq dark:text-fray-500 absolute end-1 top-1 rounded-full bg-red-100 p-4 text-red-700 transition hover:scale-110 max-sm:bg-red-50 dark:bg-red-600 dark:text-gray-100"
+          className="sc-31fee6c0-17 emumkq dark:text-fray-500 absolute end-1 top-1 rounded-full bg-red-100 p-4 text-red-700 transition hover:scale-110 dark:bg-red-600 dark:text-gray-100 max-sm:bg-red-50"
           onClick={haandleDeleteItem}
         >
           <HiOutlineTrash className="yWWjo" />

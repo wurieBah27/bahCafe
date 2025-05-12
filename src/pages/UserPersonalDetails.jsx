@@ -148,7 +148,7 @@ const UserPersonalDetails = () => {
             />
             <span
               onClick={handleShowCalender}
-              className="inline-block py-2 text-blue-600 dark:text-blue-500"
+              className="inline-block cursor-pointer py-2 text-blue-600 dark:text-blue-500"
             >
               {!showCalender ? "Edit" : "Hide"}
             </span>

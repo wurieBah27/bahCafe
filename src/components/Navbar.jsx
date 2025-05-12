@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Avatar, Button, Dropdown } from "flowbite-react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -7,6 +7,7 @@ import DarkModeToggle from "./DarkModeToggle";
 import { getUser } from "../features/customers/customersHooks/useGetCurrentUser";
 import { LogOutUser } from "../features/customers/customersHooks/LogInOutUser";
 import ConfirmDeleteUserAccount from "./ConfirmDeleteUserAccount";
+import { saveMessagingDeviceToken } from "../apis/firebaseJS/firebaseConfig";
 const Navbar = () => {
   const [openModal, setOpenModal] = useState(false);
 
@@ -17,6 +18,12 @@ const Navbar = () => {
   const navigate = useNavigate();
   const { profileUrl = "", name, email, address } = data;
   const formatted = address?.formatted || ""; // Use optional chaining to safely access formatted
+
+  /* get users permissions to send notifications */
+  useEffect(() => {
+    console.log(uid);
+    saveMessagingDeviceToken(uid);
+  }, [uid]);
 
   return (
     <nav className="border-gray-200 bg-[#0d9488] shadow-xl dark:bg-gray-700">

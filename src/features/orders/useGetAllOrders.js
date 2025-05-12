@@ -4,7 +4,6 @@ import useGetCurrentUser from "../customers/customersHooks/useGetCurrentUser";
 
 const useGetAllOrders = () => {
   const { uid } = useGetCurrentUser();
-  console.log(uid);
   const {
     data: allCustomerOrders,
     isLoading,

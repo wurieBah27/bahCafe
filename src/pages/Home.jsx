@@ -10,6 +10,8 @@ import CategoriesHeader from "../sections/CategoriesHeader";
 import FilterCategoryBtns from "../components/FilterCategoryBtns";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
+import { requestPermission } from "../helpers/getNotificationPermission";
+import { saveMessagingDeviceToken } from "../apis/firebaseJS/firebaseConfig";
 
 /*==== helper funxtion to reduce itemsMenue==== */
 const handleReduceItems = (array) =>
@@ -36,6 +38,8 @@ const Home = () => {
       setFilterByCategory(menueItems); // Only set state if it's not already set
     }
   }, [menueItems]);
+
+  /* getUsers permission to send notification */
 
   const groupedItems = handleReduceItems(filterByCategory);
   const groupedItems1 = handleReduceItems(menueItems);

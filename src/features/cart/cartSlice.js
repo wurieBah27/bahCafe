@@ -21,7 +21,6 @@ export const cartSlice = createSlice({
       reducer(state, action) {
         const { id, menueItem } = action.payload;
         const item = state?.cart?.find((item) => item.id === id);
-        console.log(state.cart);
         if (!item) {
           state.cart = [...state.cart, menueItem];
           localStorage.setItem("cart", JSON.stringify(state.cart)); // Save with the same key

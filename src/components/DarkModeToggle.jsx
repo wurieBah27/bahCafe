@@ -4,6 +4,9 @@ import { useLocaleStorage } from "../helpers/useLocaleStorage";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { toggleTheme } from "../services/darkmodeReducer";
+import { HiOutlineMoon } from "react-icons/hi2";
+import { HiOutlineSun } from "react-icons/hi";
+import { BsSunriseFill } from "react-icons/bs";
 
 const DarkModeToggle = () => {
   const dispatch = useDispatch();
@@ -28,18 +31,16 @@ const DarkModeToggle = () => {
 
     dispatch(toggleTheme(isDark));
   }, [isDark, dispatch]);
-  // onClick={() => toggleDarkMode(true)}
-  // onClick={() => toggleDarkMode(false)}
-  // onClick={() =>
-  //     toggleDarkMode(
-  //       window.matchMedia("(prefers-color-scheme: dark)").matches,
-  //     )
-  //   }
 
   return (
-    <DarkModeSelect>
-      <DropdownItem onClick={() => toggleDarkMode(true)}>Dark</DropdownItem>
-      <DropdownItem onClick={() => toggleDarkMode(false)}>Light</DropdownItem>
+    <DarkModeSelect isDarkMode={isDark}>
+      <DropdownItem onClick={() => toggleDarkMode(true)}>
+        <HiOutlineMoon className="mr-2 size-5" /> Dark
+      </DropdownItem>
+      <DropdownItem onClick={() => toggleDarkMode(false)}>
+        <HiOutlineSun className="mr-2 size-5" />
+        Light
+      </DropdownItem>
       <DropdownItem
         onClick={() =>
           toggleDarkMode(
@@ -47,7 +48,7 @@ const DarkModeToggle = () => {
           )
         }
       >
-        Device
+        <BsSunriseFill className="mr-2 size-5" /> Device
       </DropdownItem>
     </DarkModeSelect>
   );

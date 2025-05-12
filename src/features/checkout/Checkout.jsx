@@ -120,8 +120,6 @@ const Checkout = () => {
 
       const confirmOrder = await confirming();
       if (confirmOrder) {
-        console.log(data.deliveryType);
-        console.log(newOrder);
         await createOrders(newOrder);
       }
     } catch (error) {
