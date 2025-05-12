@@ -16,6 +16,7 @@ const messaging = firebase.messaging();
 
 messaging.onBackgroundMessage((payload) => {
   console.log(payload);
+  console.log(payload);
 
   const title = payload.notification.title;
 
