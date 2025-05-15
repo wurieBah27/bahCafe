@@ -21,8 +21,7 @@ const Navbar = () => {
 
   /* get users permissions to send notifications */
   useEffect(() => {
-    console.log(uid);
-    saveMessagingDeviceToken(uid);
+    if (uid) saveMessagingDeviceToken(uid);
   }, [uid]);
 
   return (
