@@ -34,7 +34,7 @@ const Footer = () => {
       <div className="mx-auto max-w-screen-xl px-4 pb-28 pt-16 sm:px-6 lg:px-8 lg:pt-24">
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
           <div>
-            <div className="flex justify-center gap-4 text-teal-600 sm:justify-start dark:text-teal-300">
+            <div className="flex justify-center gap-4 text-teal-600 dark:text-teal-300 sm:justify-start">
               <img src="/edama-icon.jpg" alt="" className="h-8 rounded-full" />
               <div>
                 <h1 className="text-2xl font-bold capitalize text-gray-900 dark:text-white">
@@ -43,7 +43,7 @@ const Footer = () => {
               </div>
             </div>
 
-            <p className="mt-6 max-w-md text-center leading-relaxed text-gray-500 sm:text-left dark:text-gray-400">
+            <p className="mt-6 max-w-md text-center leading-relaxed text-gray-500 dark:text-gray-400 sm:text-left">
               {companyDescription || "Company description goes here."}
             </p>
 
@@ -51,10 +51,11 @@ const Footer = () => {
               <p>Follow us on our social media platforms.</p>
             </div>
             <ul className="mt-4 flex justify-center gap-6 md:gap-8">
-              <li>
-                <SocialMediaIcon Icon={BsWhatsapp} url={whatsappLink} />
-              </li>
-
+              {whatsappLink && (
+                <li>
+                  <SocialMediaIcon Icon={BsWhatsapp} url={whatsappLink} />
+                </li>
+              )}
               {instagramLink && (
                 <li>
                   <SocialMediaIcon Icon={BsInstagram} url={instagramLink} />
@@ -119,7 +120,7 @@ const Footer = () => {
                     <HiOutlineMapPin className="size-5 shrink-0 text-gray-900 shadow-sm dark:text-white" />
 
                     <address className="-mt-0.5 not-italic text-gray-700 dark:text-gray-300">
-                      213 Lane, London, United Kingdom
+                      Al Mughairah, Al Mirfa, United Arab Emirates
                     </address>
                   </Link>
                 </li>
@@ -144,8 +145,15 @@ const Footer = () => {
               </Link>
             </p>
 
-            <p className="mt-4 text-sm text-gray-500 sm:order-first sm:mt-0 dark:text-gray-400">
-              &copy; 2025 Wurie Bah
+            <p className="mt-4 text-sm text-gray-500 dark:text-gray-400 sm:order-first sm:mt-0">
+              &copy; 2025{" "}
+              <Link
+                to={"https://wurie-portfolio.vercel.app/"}
+                target="_blank"
+                className="text-blue-500 underline transition hover:text-blue-500/75 dark:text-blue-400 dark:hover:text-blue-400/75"
+              >
+                Wurie Bah
+              </Link>
             </p>
           </div>
         </div>
