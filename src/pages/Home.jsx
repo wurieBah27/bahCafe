@@ -10,8 +10,7 @@ import CategoriesHeader from "../sections/CategoriesHeader";
 import FilterCategoryBtns from "../components/FilterCategoryBtns";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
-import { requestPermission } from "../helpers/getNotificationPermission";
-import { saveMessagingDeviceToken } from "../apis/firebaseJS/firebaseConfig";
+import { useRef } from "react";
 
 /*==== helper funxtion to reduce itemsMenue==== */
 const handleReduceItems = (array) =>
@@ -28,6 +27,8 @@ const handleReduceItems = (array) =>
 const Home = () => {
   const { menueItems, isFetchingMenue } = useGetAllItems();
   const [filterByCategory, setFilterByCategory] = useState([]);
+  const itemsContainerRef = useRef(null);
+
   const navigate = useNavigate();
 
   const handleOnFocus = () => {
@@ -44,23 +45,36 @@ const Home = () => {
   const groupedItems = handleReduceItems(filterByCategory);
   const groupedItems1 = handleReduceItems(menueItems);
 
+  // const handleFilteredItems = (category) => {
+  //   setFilterByCategory(groupedItems1[`${category}`]);
+  // };
+  console.log(groupedItems);
+  if (!groupedItems || isFetchingMenue) return <Spinner />;
+  // Ref for the items container
+
+  // Update handleFilteredItems to scroll to top
   const handleFilteredItems = (category) => {
     setFilterByCategory(groupedItems1[`${category}`]);
+    setTimeout(() => {
+      if (itemsContainerRef.current) {
+        const y =
+          itemsContainerRef.current.getBoundingClientRect().top +
+          window.pageYOffset -
+          100;
+        window.scrollTo({ top: y, behavior: "smooth" });
+      }
+    }, 0);
   };
 
-  if (!groupedItems || isFetchingMenue) return <Spinner />;
   return (
     <div>
       <div className="">
         <div>
           <HeroSection />
         </div>
-        {/* <AnimationWrapper> */}
         <div>
           <SearchInput handleOnFocus={handleOnFocus} />
         </div>
-        {/* </AnimationWrapper> */}
-
         <div className="mt-5 px-2">
           <Categories />
           <FilterCategoryBtns
@@ -69,7 +83,7 @@ const Home = () => {
           />
         </div>
         {menueItems.length > 0 && (
-          <div>
+          <div className="itemsContainer" ref={itemsContainerRef}>
             {Object?.keys(groupedItems).map((category) => (
               <motion.div
                 key={category}

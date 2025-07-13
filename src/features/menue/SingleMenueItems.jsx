@@ -138,21 +138,7 @@ const SingleMenueItems = ({ data = {} }) => {
                   </div>
                 </div>
               </div>
-              {/* <div className="my-2 flex items-center justify-center">
-                <span className="inline-block w-full text-center text-sm font-semibold text-[#82AE04] sm:text-xl">
-                  {discountValue > 0 && (
-                    <span className="inline-block w-full p-1 text-xs sm:text-sm dark:bg-gray-800">
-                      <span className="mr-1 text-gray-700 line-through dark:text-gray-100">
-                        AED {price}
-                      </span>{" "}
-                      <span className="mr-1 text-red-600 dark:text-red-400">
-                        {discountValue}% OFF
-                      </span>
-                      <span>({disCountName})</span>
-                    </span>
-                  )}
-                </span>
-              </div> */}
+
               <div className="mr-2 mt-2 flex items-center justify-between max-[380px]:mt-2">
                 <div className="absolute -top-2 right-2">
                   <ItemRating

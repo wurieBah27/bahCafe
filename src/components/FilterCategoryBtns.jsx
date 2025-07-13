@@ -1,5 +1,5 @@
 import { Button } from "flowbite-react";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
 const FilterCategoryBtns = ({ groupedItems, onClickBtn }) => {
@@ -41,7 +41,7 @@ const FilterCategoryBtns = ({ groupedItems, onClickBtn }) => {
         <motion.div
           className={` ${!classes ? "fixed left-0 right-0 top-0 px-2" : ""} z-50`}
         >
-          <div className="mx-auto flex h-20 max-w-5xl items-center gap-2 overflow-x-auto text-nowrap rounded-md bg-gray-100 p-2 pb-4 transition-all sm:gap-5 dark:bg-gray-700">
+          <div className="mx-auto flex h-20 max-w-5xl items-center gap-2 overflow-x-auto text-nowrap rounded-md bg-gray-100 p-2 pb-4 transition-all dark:bg-gray-700 sm:gap-5">
             {Object.keys(groupedItems).map((item, index) => (
               <Button
                 color="light"
